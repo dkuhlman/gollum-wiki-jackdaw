@@ -1,0 +1,515 @@
+= Notes -- linux, and crow
+:toc:
+:toclevels: 4
+:sectnums:
+:sectnumlevels: 4
+
+
+== Arch Linux -- starting services
+
+To start a service do, e.g.:
+
+----
+$ systemctl start sshd.service
+----
+
+To make it start automatically at boot time, do, e.g.:
+
+----
+$ sudo systemctl enable sshd.service
+----
+
+
+== Alternatives
+
+See `/etc/alternatives`.
+
+Do `man update-alternatives`.
+
+Use:
+
+----------
+$ update-alternatives --install target name source priority
+----------
+
+Where:
+
+- `source` is the new link that will be made.  It will be a
+  symbolic link to something in `/etc/alternatives`.
+
+- `name` is the name of the symlink in the `/etc/alternatives`
+  directory.
+
+- `target` -- is the executable that will be referred to
+  (indirectly) by `source`.
+
+Example:
+
+----------
+$ update-alternatives --install /usr/bin/lua lua-interpreter /usr/bin/lua5.3 120
+$ update-alternatives --install /usr/bin/luac lua-compiler /usr/bin/luac5.3 120
+----------
+
+Which will result in the following links:
+
+----------
+/usr/bin/lua --> /etc/alternatives/lua-interpreter --> /usr/bin/lua5.3
+/usr/bin/luac --> /etc/alternatives/lua-compiler --> /usr/bin/luac5.3
+----------
+
+
+
+== SSH logon
+
+Instructions on how to set-up logon for SSH using ssh-keygen are
+here: https://en.wikipedia.org/wiki/Ssh-keygen
+
+I used:
+
+----------
+$ ssh-keygen -t rsa -C "some comment"
+----------
+
+For example:
+
+----------
+$ ssh-keygen -t rsa -C "Access from quail"
+----------
+
+
+I believe that now that I've generated those files, in order to
+support an additional remote machine, I only have to copy id-rsa.pub
+to ~/.ssh/authorized_keys on the remote machine and change its
+permissions to 640: ``chmod 640 authorized_keys``.
+
+An easy way to copy the key to the remote machine is to use
+`ssh-copy-id`
+on the machine *from* which you want to logon.  Example:
+
+----------
+$ ssh-copy-id dkuhlman@scrubjay
+----------
+
+In order to not enter a passphrase when connecting, run
+``ssh-keygen`` and, when asked, do not enter a passphrase.  Then add
+``~/.ssh/id_rsa.pub`` (on the local site) to
+``~/.ssh/authorized_keys`` (on the remote site).
+
+If I get a message something like the following:
+
+..........
+Warning: the ECDSA host key for 'crow' differs from the key
+    for the IP address '192.168.0.7'
+Offending key for IP in /home/dkuhlman/.ssh/known_hosts:2
+Matching host key in /home/dkuhlman/.ssh/known_hosts:16
+Are you sure you want to continue connecting (yes/no)? no
+..........
+
+Then remove that key with the following:
+
+----------
+$ ssh-keygen -R 192.168.0.7
+----------
+
+Do this on the machine from which I was trying to make the
+connection.
+
+Make sure that environment variable SSH_AUTH_SOCK is not set.  If it
+is, add the following to ~/.bashrc-private:
+
+----------
+export SSH_AUTH_SOCK=
+----------
+
+For info on setting up keys and passphrases for ssh, see:
+
+- https://help.ubuntu.com/community/SSH?action=show&redirect=SSHHowto
+- https://help.ubuntu.com/community/SSH/OpenSSH/Keys
+
+
+== aptitude, apt, and apt-get
+
+To install a package from a `.deb` file, do:
+
+----------
+$ sudo apt-get install ./opera-stable_60.0.3255.59_amd64.deb
+----------
+
+To find out what (installed) package contains a specific file, use:
+
+----------
+$ dpkg -S <pattern>
+----------
+
+*Note:* The above only works if the package containing `pattern` has
+been installed.
+
+To list the files in an installed package, do:
+
+----------
+$ dpkg -L <package-name>
+----------
+
+
+=== Remove old Linux kernels
+
+I removed old kernel files with the following:
+
+----------
+$ sudo apt autoremove
+----------
+
+We can also remove kernel files version by version with the
+following:
+
+List the kernels -- Use either of the following:
+
+----------
+$ dpkg --list | grep linux-image | vv
+$ dpkg --list | grep linux-image | less
+----------
+
+Then remove one or more kernel and update `grub`.  For example:
+
+----------
+$ sudo aptitude  remove linux-image-4.15.0-24-generic
+$ sudo aptitude  remove linux-image-4.15.0-29-generic
+$ sudo update-grub
+----------
+
+Although, it does not seem that the `update-grub` step is needed.
+It seems to be taken care of by `aptitude`.
+
+Use the following to check amount of space used:
+
+----------
+$ df -h
+----------
+
+
+== i3 and applets
+
+See in the current directory:
+
+- i3config.txt
+- Notes_raspberry.txt
+
+=== Sound
+
+To adjust volume, use: `pavucontrol (1) -- A volume control for
+the PulseAudio sound server`.  Under `i3`, use `$mod+d`.
+
+
+== Networking
+
+=== Network discovery and exploration
+
+To find out what hosts are attached to the local network, do one of
+the following:
+
+----------
+$ arp -v
+$ nmap -sP 192.168.0.*
+$ nmap -sP 192.168.0.0/24
+----------
+
+=== Host name resolution, DNS, avahi
+
+From crow, I was unable to ping Raspberry Pi hosts by name.  I had
+to use IP address (number).  I did:
+
+----------
+$ sudo aptitude  install avahi-autoipd avahi-daemon avahi-utils
+----------
+
+Now, that problem seems to be solved.  I can now do:
+
+----------
+$ ping -c 2 magpie
+$ ping -c 2 quail
+$ ping -c 2 jackdaw.local
+$ ping -c 2 rook.local
+$ ping -c 2 bluejay.local
+----------
+
+
+== Copy files between hosts (scp)
+
+Use `scp` (secure copy).  Example:
+
+----------
+$ scp dkuhlman@crow:b1/Python/Templates/template01.py tmpl1.py
+----------
+
+Use `vim`.  Example:
+
+----------
+$ vim scp://dkuhlman@crow/b1/Python/Templates/template01.py
+----------
+
+
+== Processes
+
+Several ways to display current processes:
+
+- `htop` -- Inside `htop`.  Use backslash ("\"), then type a
+  string in order to filter processes.
+
+- `ps aux | grep <proc_of_interest>`
+
+- `ps -ef | grep <proc_of_interest>`
+
+- `pgrep -l <proc_of_interest>`
+
+Notes and hints on the `ps` command:
+
+- Standard syntax uses a dash ("-") for command line options.  BSD
+  syntax does not use a dash.  The option letters are different for
+  the two syntaxes, but you can (mostly) get the same results with
+  either.
+
+- To show a process tree, use: `$  ps -ejH` or `$ ps axjf`.  This
+  can be useful, e.g., to determine which bash process is running
+  `vim` or some other command.
+
+- We can select processes owned by user, e.g.: `$ ps -f -u dkuhlman`
+  or `$ ps -f -u dkuhlman,root`.  `-U` selects by real user ID and
+  `-u` selects by effective user ID.
+
+
+== Display the real path to an executable
+
+Use:
+
+----------
+$ which executable_name
+----------
+
+Sometimes the executable is a symbolic link (a symlink).  Then use:
+
+----------
+$ readlink -f `which executable_name`
+----------
+
+Example:
+
+----------
+$ readlink -f `which automake`
+----------
+
+
+== Generating date file names
+
+Consider this:
+
+----------
+echo $(date "+%b_%d_%Y_%H_%M_%S")
+----------
+
+I can use that in a command line or bash script to put a date/time
+in a file name.
+
+
+== Headless
+
+There is some kind of problem with running Ubuntu GNU/Linux
+headless, i.e.  without a monitor and without a keyboard.
+
+I followed the instructions here:
+
+- http://www.ghacks.net/2010/11/28/configure-linux-to-boot-without-a-monitor/
+
+- http://hungrypenguin.net/linuxandme/2011/08/ubuntu-without-a-monitor/
+
+I followed the instructions at `hungrypenguin` (above).
+I created `/etc/X11/xorg.conf` and edited `/etc/default/grub` and then ran
+`sudo grub-update`.  Also,, see my notes at ~/Txt/Notes.txt on quail.
+Backup is in {crow}~/Tmp/headless.zip.
+
+
+== Locale
+
+To set the locale, I changed /etc/default/locale.  I replaced the
+"LANG=" line:
+
+----------
+LANG=en_US.UTF-8
+----------
+
+I did this on +bluejay+.
+
+
+== Ubuntu releases and upgrading
+
+See:
+
+- https://wiki.ubuntu.com/Releases
+
+- https://help.ubuntu.com/lts/serverguide/installing-upgrading.html
+
+
+== Vim
+
+String functions:
+
+----------
+:echom tolower("Foo")
+:echom toupper("Foo")
+----------
+
+
+Fixing comment insert and column 1 problem -- I turned off both
+`cindent` and `smartindent` in my `.vimrc`.  And, I'm now using
+`filetype plugin indent on`.  For more help with the issue of
+forcing "#" to column 1 in Python code, see:
+http://stackoverflow.com/questions/354097/how-to-configure-vim-to-not-put-comments-at-the-beginning-of-lines-while-editing
+
+
+== ls command and file types
+
+From: https://unix.stackexchange.com/questions/82357/what-do-the-symbols-displayed-by-ls-f-mean
+
+`ls -F` appends symbols to filenames. These symbols show useful
+information about files.
+
+  * @ means symbolic link (or that the file has extended attributes).
+  * * means executable.
+  * = means socket.
+  * | means named pipe.
+  * > means door.
+  * / means directory.
+
+
+== File links -- hard and symbolic
+
+=== Finding all files that share a hard link
+
+You can use this:
+
+----------
+$ find . -samefile somefile.txt
+$ find ~ -samefile anotherfile.txt
+$ find / -samefile /home/dkuhlman/a1/Notes/Bzr/Notes/Notes_linux.txt
+----------
+
+Do `man find` for more information.
+
+Hard links to the same file have the same `inode` number.  To see
+the `inode` numbers, do: `ls -li`.
+
+More information on file links is here:
+
+- https://opensource.com/article/17/6/linking-linux-filesystem
+
+- https://superuser.com/questions/12972/how-can-you-see-the-actual-hard-link-by-ls
+
+
+== Configuring the network and IP addresses
+
+For information about configuring a machine so that it uses a static
+IP address, see:
+https://help.ubuntu.com/lts/serverguide/network-configuration.html
+
+
+== Hard drives etc
+
+Use `lsblk` to discover the UUID of a logical partition.  E.g.:
+
+----------
+$ lsblk -f /dev/sda5
+----------
+
+
+== Status line -- `powerline`
+
+For enhanced status line and prompts, see:
+https://github.com/powerline/powerline
+
+
+== byobu and tmux
+
+To kill extra, spurious sessions, do: (1) attach to a different
+session, (2) get a tmux command line with `Ctrl-A :`,  (3) use this
+tmux command:
+
+----------
+kill-session -t <session-name>.
+----------
+
+Or, from the command line, use one of:
+
+----------
+$ byobu kill-session -t <session-name>
+$ tmux kill-session -t <session-name>
+----------
+
+
+== Managing LVM volumes
+
+=== Commands and operations
+
+Create a new logical volume "crow-vg-1" in volume group "crow-vg":
+
+----------
+sudo lvcreate -n crow-vg-1 -L 32g crow-vg
+----------
+
+Activate the new logical volume:
+
+----------
+sudo vgchange -a y
+----------
+
+Make a file system on the new logical volume:
+
+----------
+sudo mkfs.ext4 /dev/crow-vg/crow-vg-1
+----------
+
+Display logical volumes:
+
+----------
+sudo lvdisplay
+----------
+
+Display logical group:
+
+----------
+sudo vgdisplay
+----------
+
+=== Status and information
+
+Now I can use `df -h` and I see:
+
+----------
+$ df -h
+Filesystem                        Size  Used Avail Use% Mounted on
+udev                              977M     0  977M   0% /dev
+tmpfs                             200M  3.4M  197M   2% /run
+/dev/mapper/crow--vg-root          26G  2.2G   22G   9% /
+tmpfs                            1000M     0 1000M   0% /dev/shm
+tmpfs                             5.0M     0  5.0M   0% /run/lock
+tmpfs                            1000M     0 1000M   0% /sys/fs/cgroup
+/dev/mapper/crow--vg-crow--vg--1   32G   49M   30G   1% /home/dkuhlman/a1
+tmpfs                             200M     0  200M   0% /run/user/1000
+----------
+
+And, I can use the file system under `~/a1`.
+
+
+== Managing another hard disk
+
+Mount another hard disk manually:
+
+----------
+sudo mount /dev/sdb1 /home/dkuhlman/b1
+----------
+
+Add this to `/etc/fstab` to mount it automatically:
+
+----------
+----------
+
+
+// vim:ft=asciidoc:

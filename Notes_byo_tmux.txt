@@ -1,0 +1,98 @@
+= Vim notes
+:toc:
+:sectnums:
+
+
+== Display session name on byobu status line
+
+I added the following in `~/.tmux.conf`:
+
+----
+set-option -g status-left " #S "
+----
+
+then I did:
+
+----
+$ tmux source-file .tmux.conf
+----
+
+
+== X windows
+
+For info about this, see: 
+
+- https://unix.stackexchange.com/questions/146631/in-tmux-session-cannot-connect-to-x-server-after-sshing
+
+- https://goosebearingbashshell.github.io/2017/12/07/reset-display-variable-in-tmux.html
+
+But, none of the above seems to work.  And, one of the above Web
+pages seems to conflict with the other.
+
+So, I added the following to my `.bashrc-private` on `quail`:
+
+----------
+export DISPLAY=:0.0
+----------
+
+**The following does not work.**
+
+Adding the following in `~/.tmux.conf` enables me to open Xwindows
+programs on the local machine.
+
+----------
+set-option -g update-environment "SSH_ASKPASS SSH_AUTH_SOCK SSH_AGENT_PID SSH_CONNECTION WINDOWID XAUTHORITY"
+----------
+
+Note that "DISPLAY" is missing from the above.
+
+To see current values, do:
+
+----------
+$ tmux show-options -g update-environment
+----------
+
+An alternative is to set the `DISPLAY` environment variable to the
+needed value:
+
+----------
+$ export DISPLAY=:0.0
+----------
+
+To learn the correct value, do the following (1) remove the
+statement in `.bashrc-private` that sets `DISPLAY`; (2) create a new
+terminal window; (3) *outside a tmux session*, do `$ echo $DISPLAY`.
+
+Another alternative, if possible, start tmux from the local machine,
+i.e. the on machine on which I want to start the Xwindows apps.
+
+
+== Window size -- smaller client
+
+When the window is shrunk because of a smaller client size, do one
+of the following:
+
+- Use the `list-clients` and then the `detach-client` command.
+  E.g.:
++
+----------
+$ tmux list-clients
+$ tmux detach-client -t /dev/pts/0
+----------
+
+- Can also use `CTRL-A + SHIFT-D`, then select session to close.
+
+- Or, easier still, with Byobu, use `Alt-F6` (`Meta-F6`, `M-F6`) to
+  detach all but current client.
+
+- Or:
++
+----------
+tmux detach -a
+----------
++
+The "-a" means detach all *other* clients.
+
+
+
+// vim:ft=asciidoc:

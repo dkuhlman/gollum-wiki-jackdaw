@@ -1,0 +1,33 @@
+= Notes -- email
+:toc:
+:toclevels: 4
+:sectnums:
+:sectnumlevels: 4
+
+== Saving and unpacking messages with Horde
+
+Folders -- In the folder window, right-click on a folder and select
+"Export".  The saved file (`xxxx.mbox`) can be read with:
+
+----------
+$ mutt -f xxxx.mbox.
+----------
+
+Individual messages -- In the message view pane, click "Other
+options", then select "Save".  The saved file can read with `mpack`
+utilities.  For example, to extract the text message (and other
+parts as well), use:
+
+----------
+$ munpack -t xxxx.eml
+----------
+
+On Ubuntu Linux, install the `mpack` utilities with:
+
+----------
+$ sudo aptitude install mpack
+----------
+
+On Arch Linux, the `mpack` package is in the AUR.
+
+// vim:ft=asciidoc:

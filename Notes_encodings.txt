@@ -1,0 +1,87 @@
+= Notes on various encodings
+:toc:
+
+== UUID
+
+=== command line
+
+At the command line: `$ uuidgen`
+
+
+=== python
+
+Example:
+
+----------
+In [10]: import uuid
+In [11]: a = uuid.uuid4()
+In [12]: a.hex
+Out[12]: '6db8f248eb9c45b19db70e2ca87e67fc'
+In [13]: uuid.uuid4().hex
+Out[13]: 'fefd19d4f4e5428b8f38d859bdfabf1c'
+----------
+
+
+== base64
+
+=== command line
+
+Example:
+
+----------
+$ echo "abcd" | base64 -
+YWJjZAo=
+----------
+
+
+=== python
+
+----------
+In [6]: import base64
+In [7]: base64.encodebytes(b"abcd")
+Out[7]: b'YWJjZA==\n'
+----------
+
+
+== sha
+
+=== erlang
+
+Use dependency -- `sha3`.
+
+There is an example in
+`/home/dkuhlman/a1/Erlang/Rebar3/test07/apps/test07a/src`.
+
+Example:
+
+----------
+sha3:hexhash(256, Content)
+----------
+
+
+=== python
+
+**Note:** Only seemed to work under Python 2, not Python 3.
+
+Install `sha3`:
+
+$ pip install sha3
+
+Example:
+
+----------
+In [7]: import sha3
+In [8]: a = sha3.sha3_256("abcd")
+In [9]: a.hexdigest()
+Out[9]: '6f6f129471590d2c91804c812b5750cd44cbdfb7238541c451e1ea2bc0193177'
+----------
+
+
+== utf-8
+
+=== python
+
+Strings and bytes object have `encode` and/or `decode` methods.
+
+
+// vim:ft=asciidoc

@@ -1,0 +1,459 @@
+
+ Asciidoc cheatsheet for GitHub
+ ==============================
+ :toc:
+ :toc-placement: preamble
+ :toclevels: 1
+ :Some attr: Some value
+
+ // Need some preamble to get TOC:
+ {empty}
+
+   Some attr's value is {someattr}.           Some attr’s value is Some       
+   Escaped: \{someattr} and +++{someattr}+++. value. Escaped: {someattr} and  
+                                              {someattr}.                     
+
+Section titles
+
+                 Level 1       
+                               
+   == Level 1    Text.         
+   Text.                       
+                   Level 2     
+   === Level 2                 
+   Text.         Text.         
+                               
+   ==== Level 3      Level 3   
+   Text.                       
+                 Text.         
+   ===== Level 4               
+   Text.               Level 4 
+                               
+                 Text.         
+
+Paragraphs
+
+   .Optional Title                 Optional Title                             
+   Usual                                                                      
+   paragraph.                      Usual paragraph.                           
+                                                                              
+   Second paragraph.               Second paragraph.                          
+   .Optional Title                 Optional Title                             
+                                                                              
+    Literal paragraph.             Literal paragraph.                         
+     Must be indented.              Must be indented.                         
+   .Optional Title                 Optional Title                             
+   [source,perl]                                                              
+   die 'connect: '.$dbh->errstr;   die 'connect: '.$dbh->errstr;              
+                                                                              
+   Not a code in next paragraph.   Not a code in next paragraph.              
+   .Optional Title                      Optional Title                        
+   NOTE: This is an example        Note This is an example single-paragraph   
+         single-paragraph note.         note.                                 
+   .Optional Title                      Optional Title                        
+   [NOTE]                          Note This is an example single-paragraph   
+   This is an example                   note.                                 
+   single-paragraph note.          
+   TIP: Some tip text.             Tip Some tip text.                         
+                                                                              
+   IMPORTANT: Some important text. Important Some important text.             
+                                                                              
+   WARNING: Some warning text.     Warning Some warning text.                 
+                                                                              
+   CAUTION: Some caution text.     Caution Some caution text.                 
+
+Blocks
+
+.Optional Title                              Optional Title                      
+----                                                                             
+*Listing* Block                              *Listing* Block                     
+                                                                                 
+Use: code or file listings                   Use: code or file listings          
+----                                         
+.Optional Title                                                                  
+[source,perl]                                Optional Title                      
+----                                                                             
+# *Source* block                             # *Source* block                    
+# Use: highlight code listings               # Use: highlight code listings      
+use DBI;                                     use DBI;                            
+                                                                                 
+my $dbh = DBI->connect('...',$u,$p)          my $dbh = DBI->connect('...',$u,$p) 
+    or die "connect: $dbh->errstr";              or die "connect: $dbh->errstr";
+----                                         
+.Optional Title                                                                  
+[NOTE]                                            Optional Title                 
+====                                                                             
+*NOTE* Block                                 Note NOTE Block                     
+                                                                                 
+Use: multi-paragraph notes.                       Use: multi-paragraph notes. 
+====                                         
+.Optional Title                              Optional Title                      
+[quote, cite author, cite source]                                                
+____                                           Quote Block                       
+*Quote* Block                                                                    
+                                               Use: cite somebody                
+Use: cite somebody                                                               
+____                                         — cite author                       
+                                             cite source                         
+////                                         
+*Comment* block                              
+                                             
+Use: hide comments                           
+////                                         
+++++                                         *Passthrough* Block                 
+*Passthrough* Block                                                              
+<p>                                          Use: GitHub-restricted subset of    
+Use: GitHub-restricted subset of HTML markup HTML markup                         
+<table border="1">                                                               
+<tr><td>1</td><td>2</td></tr>                +-------+                           
+</table>                                     | 1 | 2 |                           
+++++                                         +-------+                           
+ .Optional Title                             Optional Title                      
+ ....                                                                            
+ *Literal* Block                             *Literal* Block                     
+                                                                                 
+ Use: workaround when literal                Use: workaround when literal        
+ paragraph (indented) like                   paragraph (indented) like           
+   1. First.                                   1. First.                         
+   2. Second.                                  2. Second.                        
+ incorrectly processed as list.              incorrectly processed as list.      
+ ....                                        
+
+Text
+
+   forced +                               forced                              
+   line break                             line break                          
+   normal, 'italic', _italic_, *bold*.    normal, italic, italic, bold.       
+                                                                              
+   +mono *bold*+, `mono pass thru *bold*` mono bold, mono pass thru *bold*    
+                                                                              
+   ``double quoted'', `single quoted'.    “double quoted”, ‘single quoted’.   
+                                                                              
+   normal, ^super^, ~sub~.                normal, ^super, _sub.               
+   Chars: n__i__**b**++m++n               Chars: nibmn                        
+   // Comment                             
+   (C) (R) (TM) -- ... -> <- => <= &#182; © ® ™ — …​ → ← ⇒ ⇐ ¶                
+   ''''                                     -------------------------------   
+   Escaped:                                                                   
+   \_italic_, +++_italic_+++,             Escaped: _italic_, _italic_,        
+   t\__e__st, +++t__e__st+++,             t__e__st, t__e__st, &#182;
+   \&#182;                                
+
+Macros: links, images
+
+   If you’ll need to use space in url/path you should replace it with %20.
+
+   [[anchor-1]]                                                               
+   Paragraph or block 1.                  Paragraph or block 1.               
+                                                                              
+   <<anchor-1>>,                          [anchor-1], First anchor, ],        
+   <<anchor-1,First anchor>>,             xref:anchor-1[First anchor.
+   xref:anchor-1[],                       
+   xref:anchor-1[First anchor].           
+   link:README.adoc[This document]        This document /README.adoc          
+   link:/README.adoc[]                    
+   http://google.com                      http://google.com Google Search     
+   http://google.com[Google Search]       email admin                         
+   mailto:root@localhost[email admin]     
+   First home                                                                 
+   image:images/icons/home.png[]                                              
+   , second home                          First home home , second home Alt   
+   image:images/icons/home.png[Alt text]  text .                              
+   .                                                                          
+                                          home                                
+   .Block image                           Figure 1. Block image               
+   image::images/icons/home.png[]         Alt text                            
+   image::images/icons/home.png[Alt text] Thumbnail linked to full image      
+                                          
+   .Thumbnail linked to full image        My screenshot
+   image:/images/font/640-screen2.gif[    
+   "My screenshot",width=128,             
+   link="/images/font/640-screen2.gif"]   
+
+Lists
+
+                                         Bulleted                             
+                                           * bullet                           
+                                                                              
+                                           * bullet                           
+                                                                              
+                                                * bullet                      
+                                                                              
+                                                * bullet                      
+   .Bulleted                                                                  
+   * bullet                                * bullet                           
+   * bullet                                                                   
+     - bullet                                   * bullet                      
+     - bullet                                                                 
+   * bullet                                     * bullet                      
+   ** bullet                                                                  
+   ** bullet                                         * bullet                 
+   *** bullet                                                                 
+   *** bullet                                        * bullet                 
+   **** bullet                                                                
+   **** bullet                                            * bullet            
+   ***** bullet                                                               
+   ***** bullet                                           * bullet            
+   **** bullet                                                                
+   *** bullet                                                  * bullet       
+   ** bullet                                                                  
+   * bullet                                                    * bullet       
+                                                                              
+                                                          * bullet            
+                                                                              
+                                                     * bullet                 
+                                                                              
+                                                * bullet                      
+                                                                              
+                                           * bullet                           
+                                         Bulleted 2                           
+   .Bulleted 2                             * bullet                           
+   - bullet                                                                   
+     * bullet                                   * bullet                      
+     ** bullet                                                                
+        *** bullet                                   * bullet                 
+                                                                              
+                                                          * bullet            
+                                         Ordered                              
+                                          1. number                           
+                                                                              
+                                          2. number                           
+                                                                              
+                                               a. lower roman                 
+                                                                              
+                                               b. lower roman                 
+   .Ordered                                                                   
+   . number                               3. number                           
+   . number                                                                   
+     .. lower roman                            a. lower roman                 
+     .. lower roman                                                           
+   . number                                    b. lower roman                 
+   .. lower roman                                                             
+   .. lower roman                                  i. lower alpha             
+   ... lower alpha                                                            
+   ... lower alpha                                 ii. lower alpha            
+   .... lower alpha                                                           
+   .... lower alpha                                      A. lower alpha       
+   ..... lower alpha                                                          
+   ..... lower alpha                                     B. lower alpha       
+   .... lower alpha                                                           
+   ... lower alpha                                           I. lower alpha   
+   .. lower roman                                                             
+   . number                                                  II. lower alpha  
+                                                                              
+                                                         C. lower alpha       
+                                                                              
+                                                   iii. lower alpha           
+                                                                              
+                                               c. lower roman                 
+                                                                              
+                                          4. number                           
+                                         Ordered 2                            
+                                          a. lower alpha                      
+                                                                              
+                                          b. lower alpha                      
+                                                                              
+                                               a. lower roman                 
+   .Ordered 2                                                                 
+   a. lower alpha                              b. lower roman                 
+   b. lower alpha                                                             
+      .. lower roman                                1. lower alpha            
+      .. lower roman                                                          
+          .  lower alpha                            2. lower alpha            
+          .  lower alpha                                                      
+              1. lower alpha                             1. lower alpha       
+              2. lower alpha                                                  
+              3. lower alpha                             2. lower alpha       
+              4. lower alpha                                                  
+          .  lower alpha                                 3. lower alpha       
+      .. lower roman                                                          
+   c. lower alpha                                        4. lower alpha       
+                                                                              
+                                                    3. lower alpha            
+                                                                              
+                                               c. lower roman                 
+                                                                              
+                                          c. lower alpha                      
+                                         Labeled                              
+                                                                              
+                                         Term 1                               
+                                                                              
+                                            Definition 1                      
+                                                                              
+                                         Term 2                               
+                                                                              
+                                            Definition 2                      
+                                                                              
+                                                 Term 2.1                     
+                                                                              
+                                                    Definition 2.1            
+                                                                              
+                                                 Term 2.2                     
+   .Labeled                                                                   
+   Term 1::                                         Definition 2.2            
+       Definition 1                                                           
+   Term 2::                              Term 3                               
+       Definition 2                                                           
+       Term 2.1;;                           Definition 3                      
+           Definition 2.1                                                     
+       Term 2.2;;                        Term 4                               
+           Definition 2.2                                                     
+   Term 3::                                 Definition 4                      
+       Definition 3                                                           
+   Term 4:: Definition 4                         Term 4.1                     
+   Term 4.1::: Definition 4.1                                                 
+   Term 4.2::: Definition 4.2                       Definition 4.1            
+   Term 4.2.1:::: Definition 4.2.1                                            
+   Term 4.2.2:::: Definition 4.2.2               Term 4.2                     
+   Term 4.3::: Definition 4.3                                                 
+   Term 5:: Definition 5                            Definition 4.2            
+                                                                              
+                                                         Term 4.2.1           
+                                                                              
+                                                            Definition 4.2.1  
+                                                                              
+                                                         Term 4.2.2           
+                                                                              
+                                                            Definition 4.2.2  
+                                                                              
+                                                 Term 4.3                     
+                                                                              
+                                                    Definition 4.3            
+                                                                              
+                                         Term 5                               
+                                                                              
+                                            Definition 5                      
+                                         Labeled 2                            
+                                                                              
+   .Labeled 2                            Term 1                               
+   Term 1;;                                                                   
+       Definition 1                         Definition 1                      
+       Term 1.1::                                                             
+           Definition 1.1                        Term 1.1                     
+                                                                              
+                                                    Definition 1.1            
+   [horizontal]                                                               
+   .Labeled horizontal                   Labeled horizontal                   
+   Term 1:: Definition 1                                                      
+   Term 2:: Definition 2                 Term 1 Definition 1                  
+                                         Term 2 Definition 2                  
+   Term 3::                              Term 3 Definition 3                  
+       Definition 3                      Term 4 Definition 4 
+                                         
+   Term 4:: Definition 4                 
+                                         Q&A                                  
+   [qanda]                                1. Question 1                       
+   .Q&A                                                                       
+   Question 1::                              Answer 1                         
+       Answer 1                                                               
+   Question 2:: Answer 2                  2. Question 2                       
+                                                                              
+                                             Answer 2                         
+                                         Break two lists                      
+   .Break two lists                       1. number                           
+   . number                                                                   
+   . number                               2. number                           
+                                                                              
+   Independent paragraph break list.     Independent paragraph break list.    
+                                                                              
+   . number                               1. number                           
+                                                                              
+   .Header break list too                Header break list too                
+   . number                               1. number                           
+                                                                              
+   --                                     1. List block define list boundary  
+   . List block define list boundary too     too                              
+   . number                                                                   
+   . number                               2. number                           
+   --                                                                         
+                                          3. number                           
+   . number                                                                   
+   . number                               1. number                           
+                                                                              
+                                          2. number                           
+   .Continuation                         Continuation                         
+   - bullet                                * bullet continuation              
+   continuation                                                               
+   . number                                    1. number continuation         
+     continuation                                                             
+   * bullet                                          * bullet                 
+                                                                              
+     literal continuation                 literal continuation                
+                                                                              
+   .. letter                                             a. letter            
+   +                                                                          
+   Non-literal continuation.                                Non-literal       
+   +                                                        continuation.     
+   ----                                                                       
+   any block can be                       any block can be                    
+                                                                              
+   included in list                       included in list                    
+   ----                                                                       
+   +                                                        Last              
+   Last continuation.                                       continuation.     
+                                         List block allow sublist inclusion   
+                                           * bullet                           
+   .List block allow sublist inclusion                                        
+   - bullet                                     * bullet                      
+     * bullet                                                                 
+   +                                                 * bullet                 
+   --                                                                         
+       - bullet                                           * bullet            
+         * bullet                                                             
+   --                                           * bullet                      
+     * bullet                                                                 
+   - bullet                                * bullet                           
+     . number                                                                 
+       .. lower alpha                          1. number                      
+   +                                                                          
+   --                                               a. lower alpha            
+         . number                                                             
+           .. lower alpha                                1. number            
+   --                                                                         
+       .. lower alpha                                         a. lower alpha  
+     . number                                                                 
+                                                    b. lower alpha            
+                                                                              
+                                               2. number                      
+
+Tables
+
+   .An example table                                                          
+   [options="header,footer"]            Table 1. An example table             
+   |=======================             Col 1 Col 2       Col 3               
+   |Col 1|Col 2      |Col 3             6     Three items d                   
+   |1    |Item 1     |a                 1     Item 1      a                   
+   |2    |Item 2     |b                 2     Item 2      b                   
+   |3    |Item 3     |c                 3     Item 3      c     
+   |6    |Three items|d                 
+   |=======================             
+   .CSV data                                                                  
+   [format="csv",cols="4"]              Table 2. CSV data                     
+   |======                              1 2 3 4                               
+   1,2,3,4                              a b c d                               
+   a,b,c,d                              A B C D 
+   A,B,C,D                              
+   |======                              
+   [format="csv"]                                                             
+   [options="header",cols=",,s,,m"]                                           
+   |===========================         ID FName LName  Address Phone         
+   ID,FName,LName,Address,Phone         1  Vasya Pupkin London  +123  
+   1,Vasya,Pupkin,London,+123           2  X     Y      A,B     45678 
+   2,X,Y,"A,B",45678                    
+   |===========================         
+   .Multiline cells, row/col span       Table 3. Multiline cells, row/col     
+   |====                                span                                  
+   |Date |Duration |Avg HR |Notes       Date      Duration Avg Notes          
+                                                           HR                 
+   |22-Aug-08 .2+^.^|10:24 | 157 |                             Worked out     
+   Worked out MSHR (max sustainable                            MSHR (max      
+   heart rate) by going hard            22-Aug-08          157 sustainable    
+   for this interval.                                          heart rate) by 
+                                                  10:24        going hard for 
+   |22-Aug-08 | 152 |                                          this interval. 
+   Back-to-back with previous interval.                        Back-to-back   
+                                        22-Aug-08          152 with previous  
+   |24-Aug-08 3+^|none                                         interval.      
+                                        24-Aug-08 none                        
+   |====                                
+

@@ -1,0 +1,115 @@
+= Rebar3 and Cowboy and REST
+:toc:
+
+== Creating a minimal `cowboy` project with `rebar3`
+
+Create a project:
+
+----------
+$ rebar3 new release myproject
+----------
+
+(1) Add `cowboy` as a dependency in `myproject/rebar.config` and (2)
+add the `rebar3` `run` plugin:
+
+----------
+{deps, [
+        {cowboy, {git, "https://github.com/ninenines/cowboy.git"}}
+       ]}.
+{plugins, [rebar3_run]}.
+
+----------
+
+Add `cowboy` as an additional application in
+`myproject/apps/myproject/src/myproject.app.src`:
+
+----------
+{applications,
+ [kernel,
+  stdlib,
+  cowboy
+ ]},
+----------
+
+Create one or more routes and start `cowboy` in `start/2` in
+`myproject/apps/myproject/src/myproject_app.erl`.  For example:
+
+----------
+start(_Type, _Args) ->
+    Dispatch = cowboy_router:compile([
+        {'_',
+         [
+          {"/", myproject_handler, [option1, option2]}
+         ]}
+                                     ]),
+    {ok, _} = cowboy:start_clear(myproject_http_listener, 100,
+                                 [{port, 8001}],
+                                 #{env => #{dispatch => Dispatch}}
+                                ),
+    myproject_sup:start_link().
+----------
+
+Add a handler module in, given the above routing,
+`myproject/apps/myproject/src/myproject_handler.erl`.  For example:
+
+----------
+-module(myproject_handler).
+
+-export([
+          init/2
+         ]).
+
+init(Req, Opts) ->
+    Content = io_lib:format("Test 01 -- Opts: ~p~n", [Opts]),
+    Req1 = cowboy_req:reply(200,
+        #{<<"content-type">> => <<"text/plain">>},
+        list_to_binary(Content),
+        Req),
+    {ok, Req1, Opts}.
+----------
+
+Build and run the project -- This will fetch any needed dependencies
+(including `cowboy`) and compile any code that needs it and,
+finally, start the project (the `cowboy` server in particular)
+giving you access to an `erl` console shell:
+
+----------
+$ rebar3 run
+----------
+
+
+== Hints and suggestions
+
+Running your project with `{dev_mode, true}` (see above) makes it a
+bit quicker to recompile and restart.
+
+For debugging, you can use `io:fwrite/2` and run your project in the
+foreground.  For example:
+
+----------
+_build/default/rel/myproject/bin/myproject foreground
+----------
+
+
+== Creating a REST handler
+
+See: https://ninenines.eu/docs/en/cowboy/2.0/guide/rest_handlers/
+
+
+There is a template at `~/.vim/bundle/vim-erlang-skeletons/`.  It's
+a fork of the `vim-erlang-skeletons` repo at Github, to which I
+added the REST skeleton.
+
+
+== Webmachine
+
+More help with creating REST handlers is here:
+https://en.wikiversity.org/wiki/Web_Development_with_Webmachine_for_Erlang
+
+This document claims that Cowboy REST handlers and Webmachine REST
+handlers are almost the same; and that converting one to the other
+is easy.  See:
+https://en.wikiversity.org/wiki/Web_Development_with_Webmachine_for_Erlang#Porting_a_Webmachine_Application_to_Cowboy
+
+
+// vim:ft=asciidoc:

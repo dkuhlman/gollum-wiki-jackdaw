@@ -1,0 +1,21 @@
+= Notes table of contents and lnks and locations
+
+== Comments
+
+To edit/show any of the files listed below, use `Ctrl-w gf`.  See:
+`:help ctrl-g`.
+
+I still need a way to collect all my notes in a repository (Bazaar,
+Mercurial, or Git) so that I can manage them and push them to
+another machine.  Perhaps a repo/directory containing symbolic
+links.
+
+== Locations
+
+- Main -- /home/dkuhlman/Txt/Notes.txt
+
+- Erlang -- /home/dkuhlman/a1/Erlang/Notes.txt
+- Erlang rebar3 -- /home/dkuhlman/a1/Erlang/Rebar3/Notes.txt
+- Vim -- /home/dkuhlman/a1/Source/Vim/Notes.txt
+
+// vim:ft=asciidoc:

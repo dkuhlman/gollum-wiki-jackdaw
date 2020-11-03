@@ -1,0 +1,109 @@
+= Rasoberrt Pi notes
+:toc:
+:sectnums:
+:toclevels: 4
+:toc-title: Contents:
+
+
+== State change error
+
+While updating, I got this message:
+
+----------
+E: Repository 'http://raspbian.raspberrypi.org/raspbian buster InRelease' changed its 'Suite' value from 'testing' to 'stable'
+E: Failed to download some files
+W: Failed to fetch http://raspbian.raspberrypi.org/raspbian/dists/buster/InRelease:
+----------
+
+I fixed it by running the following:
+
+----------
+sudo apt-get update --allow-releaseinfo-change
+----------
+
+
+== Change default user and name
+
+[copied from:
+https://thepihut.com/blogs/raspberry-pi-tutorials/how-to-change-the-default-account-username-and-password
+]
+
+In order to change the username `pi` we will have to log in as the
+`root` user since it's not possible to rename an account while your
+logged into it. To log in as root user first we have to enable it,
+to do so type the following command whilst logged in as the default
+pi user:
+
+----------
+$ sudo passwd root
+----------
+
+Choose a secure password for the root user. You can disable the root
+account later if you wish.
+
+Now logout of the user pi using the command:
+
+----------
+$ logout
+----------
+
+And then log back in as the user `root` using the password you
+just created. Now we can rename the efault pi user name. The
+following method renames the user `pi` to `newname`, replace this
+with whatever you want. Type the command:
+
+----------
+$ usermod -l newname pi
+----------
+
+Now the user name has been changed the user's home directory name
+should also be changed to reflect the new login name:
+
+----------
+$ usermod -m -d /home/newname newname
+----------
+
+Now logout and log back in as newname.
+
+
+== apt, aptitude, etc
+
+I had a problem with a change in the "Suite value" of the
+repository.
+
+I followed the instructions here:
+
+https://askubuntu.com/questions/989906/explicitly-accept-change-for-ppa-label
+
+I did the following:
+
+----------
+$ sudo apt-get --allow-releaseinfo-change update
+$ sudo aptitude update
+$ sudo aptitude -s install neovim
+----------
+
+
+== i3wm and applets
+
+Also see `i3config.txt` (in the current directory).
+
+I used `aptitude` to install these packages:
+
+- network-manager
+- network-manager-gnome
+- clipit
+
+I added these to the end of the `i3wm` configuration -- `~/.config/i3/config`:
+
+----------
+#
+# gdk
+workspace_layout tabbed
+#exec --no-startup-id parcellite
+exec --no-startup-id xscreensaver
+exec --no-startup-id clipit
+exec --no-startup-id nm-applet
+----------
+
+// vim:ft=asciidoc:

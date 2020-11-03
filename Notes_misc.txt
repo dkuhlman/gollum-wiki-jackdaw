@@ -1,0 +1,93 @@
+= crow install
+:toc:
+:toclevels: 4
+:toc-title: Contents:
+:sectnums:
+
+
+== byobu and tmux
+
+To kill extra, spurious sessions, do: (1) attach to a different
+session, (2) get a tmux command line with `Ctrl-A :`,  (3) use this
+tmux command:
+
+----------
+kill-session -t <session-name>.
+----------
+
+Or, from the command line, use one of:
+
+----------
+$ byobu kill-session -t <session-name>
+$ tmux kill-session -t <session-name>
+----------
+
+
+== Managing LVM volumes
+
+=== Commands and operations
+
+Create a new logical volume "crow-vg-1" in volume group "crow-vg":
+
+----------
+sudo lvcreate -n crow-vg-1 -L 32g crow-vg
+----------
+
+Activate the new logical volume:
+
+----------
+sudo vgchange -a y
+----------
+
+Make a file system on the new logical volume:
+
+----------
+sudo mkfs.ext4 /dev/crow-vg/crow-vg-1
+----------
+
+Display logical volumes:
+
+----------
+sudo lvdisplay
+----------
+
+Display logical group:
+
+----------
+sudo vgdisplay
+----------
+
+=== Status and information
+
+Now I can use `df -h` and I see:
+
+----------
+$ df -h
+Filesystem                        Size  Used Avail Use% Mounted on
+udev                              977M     0  977M   0% /dev
+tmpfs                             200M  3.4M  197M   2% /run
+/dev/mapper/crow--vg-root          26G  2.2G   22G   9% /
+tmpfs                            1000M     0 1000M   0% /dev/shm
+tmpfs                             5.0M     0  5.0M   0% /run/lock
+tmpfs                            1000M     0 1000M   0% /sys/fs/cgroup
+/dev/mapper/crow--vg-crow--vg--1   32G   49M   30G   1% /home/dkuhlman/a1
+tmpfs                             200M     0  200M   0% /run/user/1000
+----------
+
+And, I can use the file system under `~/a1`.
+
+
+== Managing another hard disk
+
+Mount another hard disk manually:
+
+----------
+sudo mount /dev/sdb1 /home/dkuhlman/b1
+----------
+
+Add this to `/etc/fstab` to mount it automatically:
+
+----------
+----------
+
+// vim:ft=asciidoc:

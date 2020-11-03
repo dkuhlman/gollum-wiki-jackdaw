@@ -1,0 +1,102 @@
+= Notes on text processing and light-weight markup
+:toc: left
+:numbered:
+:stylesheet: dave01.css
+:docinfo: shared
+:nofooter:
+
+== `asciidoc` and `reStructuredText`
+
+=== Overview -- Transforming asciidoc to reST
+
+----------
+#!/bin/sh
+asciidoctor -b docbook5 -o - $1 | pandoc -f docbook -t rst -o $2
+----------
+
+Or, to write to `stdout`:
+
+----------
+#!/bin/sh
+asciidoctor -b docbook5 -o - $1 | pandoc -f docbook -t rst
+----------
+
+There are scripts for each of the above on crow in: (1)
+`~/bin/asciidoc-2-rest.sh` and (2)
+`~/bin/asciidoc-2-rest-stdout.sh`
+
+
+=== Details -- Convert asciidoc to reST (reStructuredText)
+
+I often write in Asciidoc (and use Asciidoctor as my converter).
+But, I need reStructuredText for my blog.  So, to convert from
+Asciidoc format to Docutils reStructuredText format, I used
+`asciidoctor` and `pandoc`:
+
+----------
+$ asciidoctor -b docbook5 some_file01.txt
+$ pandoc -f docbook -t rst -o some_file01.rst some_file01.xml
+----------
+
+Notes:
+
+- I installed `asciidoctor` as a `ruby` `gem`.
+
+- `pandoc` can be installed with the `aptitude` or the `apt-get`
+  package manager.
+
+- `pandoc` is also included in the Anaconda distribution of Python.
+
+
+== Asciidoc attributes
+
+Some sample attribute assignment in the document header:
+
+----------
+= My document title
+:toc:
+:toclevels: 4
+:toc-title: Contents:
+:sectnums:
+----------
+
+Notes:
+
+- Each of the above attribute assignments is optional.
+
+- There must be no blank lines in the document header.  Attribute
+  assignment must start in column 1.
+
+
+== Asciidoctor footer
+
+For HTML output, create a file containing HTML code to be inserted
+in the footer.  Create it in the currect directory and name it:
+"docinfo-footer.html".
+
+Set the following attributes in the header of the source document:
+
+----------
+:docinfo: shared
+:nofooter:
+----------
+
+Here is a sample footer file (`docinfo-footer.html`):
+
+----------
+<hr/>
+<p>
+This document is written in the Asciidoc light-weight markup language format.
+It had been processed with
+<a href="https://asciidoctor.org/">Asciidoctor</a>.
+</p>
+<p>
+The document source is here:
+<a href="{docname}{docfilesuffix}">source</a>.
+</p>
+<p>
+Last updated: {docdatetime}.
+</p>
+----------
+
+// vim:ft=asciidoc:

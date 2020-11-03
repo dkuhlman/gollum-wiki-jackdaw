@@ -1,0 +1,30 @@
+= Lua notes
+:toc: left
+:sectnums:
+:toclevels: 4
+:toc-title: Contents:
+:stylesheet: dave01.css
+:docinfo: shared
+:nofooter:
+
+== Symbolic links, alternatives
+
+On Ubuntu, the correct symbolic links were not set up for the
+interpreter and compiler.  I found this workaround.
+
+----------
+sudo update-alternatives --install /usr/bin/lua lua-interpreter \
+/usr/bin/lua5.3 130 --slave /usr/share/man/man1/lua.1.gz \
+lua-manual /usr/share/man/man1/lua5.3.1.gz
+
+sudo update-alternatives --install /usr/bin/luac lua-compiler \
+/usr/bin/luac5.3 130 --slave /usr/share/man/man1/luac.1.gz \
+lua-compiler-manual /usr/share/man/man1/luac5.3.1.gz
+----------
+
+See: https://askubuntu.com/questions/850317/installing-lua5-2-vs-lua5-3-on-ubuntu-16-10
+
+
+
+
+// vim:ft=asciidoc:

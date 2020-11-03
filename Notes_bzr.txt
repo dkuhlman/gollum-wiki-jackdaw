@@ -1,0 +1,24 @@
+= Bazaar/bzr notes
+:toc:
+:sectnums:
+:toclevels: 4
+:toc-title: Contents:
+
+
+== Initialization
+
+Created a shared repository containing branches for `Notes` and
+`Reviews`:
+
+----------
+$ mcdir txt_master_01/
+$ bzr init-repository .
+$ bzr branch ~/b1/Notes/Bzr/Notes
+$ bzr branch ../Reviews
+----------
+
+Q: Is it possible that a shared repository is *only* intended to
+contain multiple branches of the *same* project?
+
+
+// vim:ft=asciidoc:

@@ -1,0 +1,343 @@
+= Vim notes
+:toc: left
+:sectnums:
+:toclevels: 4
+:toc-title: Contents:
+:stylesheet: dave01.css
+:docinfo: shared
+:nofooter:
+
+
+== Syntax highlight sync
+
+When syntax highlighting gets out of sync, do:
+
+---------
+:syntax sync fromstart
+:syn sync fromstart
+---------
+
+== Neomake
+
+Note that with Neovim, I am now using Neomake instead of Syntastic.
+I does async checking.  So, it does not freeze Nvim when checking
+big files.
+
+To turn off Neomake, do `:NeomakeToggle`.
+
+Neomake and (Elixir) Mix -- Neomake does some kind of update, which
+makes Mix think that files are up-to-date and do not need to be
+rebuilt.  To work around this, do: `:NeomakeToggle`, which turns of
+Neomake checking when I save the file.
+
+== Syntastic
+
+In order to automatically turn off Syntastic's error checking on
+startup, I added the following to my `Nsession00.vim`:
+`SyntasticToggleMode`.
+
+== Switching back and forth between two files/buffers
+
+Sometimes I have a number of files open and I want to switch quickly
+back and forth between two of them.  Here are some ways to switch
+between different tabs and different buffers (in the same
+tab/window:
+
+- Switch tabs -- Use `N gt` or, given my mappings, `N <F6>` to
+  switch between non-adjacent tabs.  The tabs are numbered starting
+  with 1 from the left.
+
+- Switch buffers -- Use `:b N` or `:buffer N` to switch to a
+  different buffer (in the same tab), then use ctrl-^ to switch back
+  and forth between that buffer and the earlier one.  Get help with
+  `:help ctrl-^`.  Use `:ls` to list the buffers and learn their
+  buffer numbers.  Can also use `N ctrl-^` to switch to buffer N.
+
+
+== Using terminals inside Neovim
+
+
+In my `.vimrc`, I mapped `<esc>` to `<ctrl-\><ctrl-n>`, which
+switches from terminal mode to normal mode.  Use `i` (insert) to go
+back to terminal mode.  To switch tabs, exit terminal mode (<esc>).
+
+Start a terminal session in a new tab with:
+
+---------
+:tabedit term://bash
+---------
+
+For help, see:
+
+- http://vimcasts.org/episodes/neovim-terminal/
+
+- `:help terminal-emulator`  
+
+
+== Colors
+
+I'm using `solarized`.
+
+Set it with `:colorscheme solarized`.
+
+See: `~/.vim/bundle/vim-colors-solorized`.
+
+
+== Mappings and repeat
+
+In IxQuick, search for "vim map functions".
+
+`vim-repeat` -- See https://tpope.io/vim/repeat.git
+
+
+== The `g` command
+
+Enables us to perform a command on all lines containing a pattern.
+
+For example, enables us to display all lines containing a pattern.
+
+Examples:
+
+---------
+:g/pattern/z#.5
+
+# Show 5 lines of context.
+:g/pattern/z#.5
+
+" Same, but with some beautification (a separator line).
+:g/pattern/z#.5|echo "=========="
+
+" Show context and line numbers and line of dashes around target line.
+:g/pattern/z#=3
+:g/pattern/:z#=3            (note: the colon is optional.)
+---------
+
+Remember that the pattern is a regular expression.
+
+
+See: http://vim.wikia.com/wiki/Power_of_g
+
+For help, in nvim/vim, do:
+
+---------
+:help :g
+:help :#
+:help :z
+---------
+
+== Show current file name and info
+
+To show current file name, line, column, percentage into file, use
+Ctrl-g or `:file` or `:file!'.
+
+To show full path and name of file, use `:echo expand('%:p').  See:
+`:help expand`.
+
+
+== Capture current file name
+
+[Ref. https://vim.fandom.com/wiki/Get_the_name_of_the_current_file]
+
+Register `%` contains the name of the current file, and register #
+contains the name of the alternate file. These registers allow the
+name of the current or alternate files to be displayed or inserted.
+The name, or full path, or directory containing the file can be
+used.
+
+For example, in directory `/abc` the command vim `def/my.txt` would edit
+file `/abc/def/my.txt`. The following commands could be entered to
+display the information shown.
+
+---------
+:echo @% 	def/my.txt 	directory/name of file (relative to the current working directory of /abc)
+:echo expand('%:t') 	my.txt 	name of file ('tail')
+:echo expand('%:p') 	/abc/def/my.txt 	full path
+:echo expand('%:p:h') 	/abc/def 	directory containing file ('head')
+:echo expand('%:p:h:t') 	def 	First get the full path with :p (/abc/def/my.txt), then get the head of that with :h (/abc/def), then get the tail of that with :t (def)
+:echo expand('%:r') 	def/my 	name of file less one extension ('root')
+:echo expand('%:e') 	txt 	name of file's extension ('extension')
+---------
+
+For more info run `:help expand` and `:help filename_modifiers`.
+
+If all that is wanted is to display the name of the current file,
+type Ctrl-G (or press 1 then Ctrl-G for the full path).
+
+When using `@%`, the name is displayed relative to the current
+directory.
+
+In insert mode, type Ctrl-R then `%` to insert the name of the current
+file.
+
+In command mode (after typing a colon), type Ctrl-R then % to insert
+the name of the current file. The inserted name can then be edited
+to create a similar name.
+
+In normal mode, type `"%p` to put the name of the current file after
+the cursor (or `"%P` to insert the name before the cursor).
+
+The following commands insert lines consisting of the full path of
+the current and alternate files into the buffer:
+
+---------
+:put =expand('%:p')
+:put =expand('#:p')
+---------
+
+
+== Helpful resources
+
+- https://realpython.com/blog/python/vim-and-python-a-match-made-in-heaven/
+
+
+== Building Vim
+
+Update: Now, I'm building python 2.7 and 3.6 from source and am
+installing it under `/opt`, which is not on my `PATH`.  And, what I
+use it for is to create `virtualenv`.
+
+Since I no longer have Python installed under `/usr/local`, I do not
+have to worry about it being built one way or the other (shared or
+static libraries, e.g.).  But, I might have to install `-dev`
+versions of Python.
+
+In order to build Vim with support for python, I had to compile
+Python with support for shared libraries.  I used this script to
+build Python:
+
+---------
+#!/bin/bash
+sudo ls > /dev/null
+make distclean
+./configure --enable-shared
+make -j 2
+sudo make install
+---------
+
+And, here is the script I use to build Vim, itself:
+
+---------
+#!/bin/bash
+
+sudo ls > /dev/null
+make distclean
+./configure \
+    --enable-multibyte \
+    --enable-pythoninterp \
+    --enable-rubyinterp \
+    --enable-luainterp
+#    --with-lua-prefix=/usr/include/lua5.3
+#make clean
+make -j 2
+sudo make install
+---------
+
+
+== Python templates
+
+Also see: `UltiSnips`, below.
+
+There are several SnipMate templates for creating Python scripts --
+currently:
+
+- "template1" -- simple
+
+- "template2" -- slightly more complex run-able script; uses
+  `argparse`.
+
+Plus, a reasonably large number of scripts for Python (and other
+languages, also) that come with the SnipMate distribution.  On
+`crow`, see:
+
+- `~/.vim/bundle/vim-snipmate`
+
+- `~/.vim/bundle/vim-snippets` -- A library of snippets for various
+  file types.
+
+- `~/.vim/snippets/` -- My custom, personal snippets (e.g.
+  "template1", "template2", etc.
+
+In Vim/Nvim, use `:help snipmate` for help.
+
+
+== UltiSnips
+
+In order to use `UltiSnips` format/syntax for snippet definitions,
+the definitions must be in an `UltiSnips` director, *not* in a
+SnipMate directory.  The default `UltiSnips` directory is
+"UltiSnips".  So, for example:
+
+- I can put definitions using the `UltiSnips` format/syntax
+  in `~/.vim/UltiSnips`.
+
+- I can put definitions using the `SnipMate` format/syntax
+  in `~/.vim/snippets`.
+
+
+== The Vim/Nvim help system
+
+=== Build the help tags
+
+Instructions from:
+https://vi.stackexchange.com/questions/17210/generating-help-tags-for-packages-that-are-loaded-by-vim-8s-package-management
+
+Using :helptags ALL should re-generate all helptags for all doc directories in
+runtimepath; which should include the ~/.vim/pack/default/start/* directories.
+
+You will probably get an error similar to:
+
+    E152: Cannot open /usr/share/vim/vim81/doc/tags for writing
+
+Which is safe to ignore. Vim will continue generating helptags after this
+error (check the output of :100verbose :helptags ALL if you don't believe me).
+
+
+== Variables and registers
+
+Set the value of a register or a variable:
+
+---------
+:let @b = system("pwd")
+:let somevariable = system("pwd")
+---------
+
+See `:h system`.
+
+Insert the value of a register or variable at the cursor location:
+
+---------
+"bp
+:put = somevariable
+:put b
+---------
+
+See `:h :put`.
+
+Insert the result of a system/shell command into the buffer:
+
+---------
+:r !pwd
+:r !ls *.txt
+
+:let @b = system("ls *.txt")
+"bp
+---------
+
+See help for the expression register (=) -- `:h @=` or `:h "=`.
+
+Or, highlight text (mark with v, shift-v, ctrl-v), then use filter (:!).
+
+Or, (in Neovim) create a terminal buffer, run a command, then copy
+and yank:
+
+---------
+:tabnew
+:te
+i
+pwd
+<esc>
+---------
+
+
+
+// vim:ft=asciidoc:

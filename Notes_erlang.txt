@@ -1,0 +1,229 @@
+= Erlang notes
+:toc:
+:numbered:
+
+
+== Managing Erlang builds and installations
+
+On `crow`, I download Erlang source with `git` and build and install
+it.  There is a script.  Use:
+
+----------
+$ cd ~/a1/Erlang/Git/otp
+$ get pull
+$ ./run_configure_make_install
+----------
+
+Alternatively, I could use `kerl`.  It's a shell script.  On `crow`,
+it is located at `~/a1/Erlang/Kerl/Git/kerl.  There is a symbolic
+link at `~/bin/kerl`.  The repo and more information is at:
+https://github.com/kerl/kerl.
+
+
+== erl shell exception causes restart
+
+An exception in the `erl` shell causes the shell to restart and then
+ports and ETS tables and PIDs are lost.  To change this behavior,
+do:
+
+----------
+> catch_exception(true).
+----------
+
+Then an exception (e.g. one generated with `error(junk)`) will not
+cause those PIDs to change.
+
+See message with subject "Shell pid changes after an error occurred"
+dated 4/10/2017 in the erlang-questions@erlang.org email list.
+
+Also see: http://erlang.org/doc/man/shell.html#catch_exception-1
+
+
+== JSON -- `jiffy`
+
+Add this dependency (e.g. to a `rebar3` `rebar.config` file:
+
+----------
+{deps, [
+        {jiffy, {git, "https://github.com/davisp/jiffy.git", {branch, "master"}}},
+            o
+            o
+            o
+       ]}.
+----------
+
+Then use:
+
+----------
+2> A = jiffy:encode({[{aa, 11}, {bb, 22}]}).
+<<"{\"aa\":11,\"bb\":22}">>
+3> jiffy:decode(A).
+{[{<<"aa">>,11},{<<"bb">>,22}]}
+----------
+
+
+== sha3 module
+
+On crow, I've compiled it.  Can access it by adding the following to
+my `~/.erlang` file:
+
+----------
+code:add_pathz("/home/dkuhlman/a1/Erlang/Git/sha3//ebin").
+code:add_pathz("/home/dkuhlman/a1/Erlang/Git/sha3/deps/hex/ebin").
+----------
+
+
+== hex module
+
+The Git repo is here: git://github.com/b/hex
+
+I also found code for the hex module here:
+https://bravenewmethod.com/2011/02/16/apple-push-notifications-with-erlang/
+
+I added it to `Erlang/Git/sha3`.
+
+Here is the actual code:
+
+----------
+-module(hex).
+-export([bin_to_hexstr/1,hexstr_to_bin/1]).
+
+bin_to_hexstr(Bin) ->
+   lists:flatten([io_lib:format("~2.16.0B", [X]) ||
+                  X <- binary_to_list(Bin)]).
+
+hexstr_to_bin(S) ->
+   hexstr_to_bin(S, []).
+hexstr_to_bin([], Acc) ->
+   list_to_binary(lists:reverse(Acc));
+hexstr_to_bin([X,Y|T], Acc) ->
+   {ok, [V], []} = io_lib:fread("~16u", [X,Y]),
+   hexstr_to_bin(T, [V | Acc]).
+----------
+
+
+== `zipper` -- traverse complex data structures
+
+See: https://github.com/inaka/zipper
+
+
+== Auto tab completion
+
+Some modules are not automatically loaded, and so, tab completion
+does not work on them.  To enable it in the Erlang shell, load the
+module, for example:
+
+----------
+1> l(maps).
+----------
+
+Note: Calling a function in the module should also force Erlang to
+load that module, but in the case of the `maps` module, this does
+not seem to work.
+
+This works for the following modules:
+
+- `maps`
+
+- `base64`
+
+
+== `try ... catch ...`
+
+We need to know what exception class and pattern we need to match
+against.  To find out, generate the exception in the Erlang shell.
+Example:
+
+----------
+41> A = maps:new().
+#{}
+42> maps:get(aa, A).
+** exception error: {badkey,aa}
+     in function  maps:get/2
+        called as maps:get(aa,#{})
+----------
+
+The exception class and pattern are the parts before and after the
+colon.  In this case, any of the following would match that
+exeception:
+
+----------
+error:{badkey, T}    % where T was unbound; T will be bound to aa
+error: T             % T will be bound to {badkey,aa}
+error:_
+_:_                  % matches all exceptions
+----------
+
+Here is an example of a `try ... catch ...` expression that catches
+the above error:
+
+----------
+43> try maps:get(aa, A) of _ -> ok catch error:{badkey, T} -> {nogood, T} end.
+{nogood,aa}
+----------
+
+== JSON
+
+Use `jsx`.  We can fetch and build it with `rebar3`.
+
+Note that JSON is a string representation of a data structure.  So,
+(1) `encode` produces an Erlang binary string (JSON), and (2) decode
+produces an Erlang term.
+
+A JSON dictionary is a list of 2-tuples.  Example:
+
+----------
+> C = [{<<"aa">>, 11}, {<<"bb">>, 22}].
+[{<<"aa">>,11},{<<"bb">>,22}]
+> D = jsx:encode(C).
+<<"{\"aa\":11,\"bb\":22}">>
+> D.
+<<"{\"aa\":11,\"bb\":22}">>
+> jsx:decode(D).
+[{<<"aa">>,11},{<<"bb">>,22}]
+----------
+
+In order to convert JSON into an Erlang map rather than a
+list/proplist, use `return_maps`.  Example:
+
+----------
+> jsx:decode(D, [return_maps]).
+#{<<"aa">> => 11,<<"bb">> => 22}
+----------
+
+To build it with `rebar3`, use this in your `rebar.config` file:
+
+----------
+{deps, [
+    {jsx, {git, "https://github.com/talentdeficit/jsx.git", {branch, "master"}}},
+    o
+    o
+    o
+]}.
+----------
+
+
+== The Beam book
+
+https://github.com/happi/theBeamBook
+
+Can be read as a Web page.
+
+
+== Man pages
+
+The Erlang OTP man pages are in this directory (`~/a1/Erlang`).
+
+I added that directory to `~/.manpath`.
+
+Also see `/etc/manpath.config`.
+
+
+== Erlang plus Elixir
+
+For help with using Elixir code in Erlang, see:
+https://github.com/okeuday/reltool_util/blob/master/ex2erl.
+
+
+
+// vim:ft=asciidoc:

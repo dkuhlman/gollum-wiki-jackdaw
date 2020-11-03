@@ -1,0 +1,11 @@
+= Notes
+
+== erlang, rebar3, cowboy, and REST
+
+I had problems because 'rebar3' insisted on downloading `cowboy v.
+1.0`.  I finally found the right dependency specification.  Check
+`_build/default/lib/cowboy/ebin/cowboy.app`.  The one that works is
+in `/home/dkuhlman/a1/Erlang/Rebar3/test06`.
+
+
+// vim:ft=asciidoc:

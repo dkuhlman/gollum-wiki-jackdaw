@@ -1,0 +1,21 @@
+= i3wm notes
+:toc:
+:sectnums:
+:toclevels: 4
+:toc-title: Contents:
+
+
+== Config
+
+Files -- Configuration is don in `~/.config/i3/config`.
+
+There are sample `config` files at:
+
+- https://gist.github.com/Insolita/64d8fc80a2c8b6e114e05e07e97928c7
+
+- https://gist.github.com/bcremer/7524492
+
+The cache of the menu items (`dmenu`) is in `~/.cache/dmenu_run`.
+
+
+// vim:ft=asciidoc:

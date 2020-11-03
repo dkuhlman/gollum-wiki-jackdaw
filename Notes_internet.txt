@@ -1,0 +1,46 @@
+= Notes on the Internet and the Web
+
+== Networking
+
+To show local IP address, do:
+
+----------
+$ ip address show
+# or
+$ ip a show
+----------
+
+== Firefox
+
+=== Transfering saved passwords
+
+See this:
+https://support.mozilla.org/en-US/questions/1113693[How to transfer Saved Logins to a new computer]
+
+
+== Resolving hosts on local network (LAN)
+
+This stopped working on `magpie` and `quail` after I upgraded them to
+Ubuntu 20.04.1 LTS.  Here is what I did on `magpie` and `quail`.
+
+The wrong `nameserver` was in `/etc/resolv.conf`.
+
+I followed the instructions here:
+https://askubuntu.com/questions/201603/should-i-edit-my-resolv-conf-file-to-fix-wrong-dns-problem
+
+I changed `/etc/resolvconf/resolv.conf.d/head` -- Added
+"nameserver 192.168.50.1".
+
+Then, I ran:
+
+----
+sudo resolvconf -u
+----
+
+Alternative solution (?).  Recommented (?) -- Add
+`dns-nameservers x.x.x.x y.y.y.y` to `/etc/network/interfaces`.
+See:
+https://askubuntu.com/questions/201603/should-i-edit-my-resolv-conf-file-to-fix-wrong-dns-problem
+
+
+// vim:ft=asciidoc:
