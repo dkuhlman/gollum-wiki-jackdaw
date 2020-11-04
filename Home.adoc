@@ -1,1 +1,6 @@
 == Notes home page
+
+This `repo`/directory contains my notes on Linux, how to
+use it, and various topics.
+
+// vim:ft=asciidoc:
