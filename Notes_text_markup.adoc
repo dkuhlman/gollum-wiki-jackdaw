@@ -48,6 +48,20 @@ Notes:
 - `pandoc` is also included in the Anaconda distribution of Python.
 
 
+== Asciidoc and markdown
+
+=== Transform Asciidoc to markdown
+
+Use this (`~/bin/asciidoc_to_markdown.sh` on `jackdaw`):
+
+----------
+#!/bin/bash -x
+
+#asciidoctor -b docbook5 -o - $1.txt | pandoc -f docbook -t markdown_strict $1.xml -o $1.md
+asciidoctor -b docbook5 -o - $1.txt | pandoc -f docbook -t markdown - -o $1.md
+----------
+
+
 == Asciidoc attributes
 
 Some sample attribute assignment in the document header:
