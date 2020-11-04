@@ -1,0 +1,11 @@
+= Notes on `git`
+
+== Aliases
+
+See `~/.gitconfig` on `jackdaw`.
+
+== Command `show`
+
+Shows details on a specific commit.
+
+// vim:ft=asciidoc:
