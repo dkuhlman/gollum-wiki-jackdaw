@@ -29,5 +29,6 @@ $ sudo aptitude install mpack
 ----------
 
 On Arch Linux, the `mpack` package is in the AUR.
+Install it with `pacman`.
 
 // vim:ft=asciidoc:
