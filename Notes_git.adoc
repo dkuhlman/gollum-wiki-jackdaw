@@ -8,4 +8,5 @@ See `~/.gitconfig` on `jackdaw`.
 
 Shows details on a specific commit.
 
+
 // vim:ft=asciidoc:
