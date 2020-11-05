@@ -56,7 +56,6 @@ end
 
 main()
 ----------
-stuff
 
 
 // vim:ft=asciidoc:
