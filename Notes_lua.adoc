@@ -24,6 +24,16 @@ lua-compiler-manual /usr/share/man/man1/luac5.3.1.gz
 
 See: https://askubuntu.com/questions/850317/installing-lua5-2-vs-lua5-3-on-ubuntu-16-10
 
+== Reloading a module while in the interactive console
+
+Do this:
+
+----------
+> package.loaded.mymodule = nil
+> mymodule = require("mymodule")
+----------
+
+
 
 
 
