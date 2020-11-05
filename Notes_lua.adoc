@@ -41,21 +41,22 @@ The command line arguments are in global variable `args`.
 There is also a module `argparse` at `luarocks`.  Here is an example:
 
 ----------
-#!/usr/bin/env lua  
-  
+#!/usr/bin/env lua
+
 local argparse = require('argparse')
 local transformlib = require('transformlib')
 
-local function main()             
+local function main()
     local parser = argparse("script", "convert asciidoc to html")
     parser:argument("inputfilenames", "Input file names")
-        :args("+")                                                                      
-    local args = parser:parse()                         
+        :args("+")
+    local args = parser:parse()
     transformlib.convert(args.inputfilenames)
 end
 
 main()
 ----------
+stuff
 
 
 // vim:ft=asciidoc:
