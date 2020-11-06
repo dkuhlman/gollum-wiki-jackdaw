@@ -3,7 +3,7 @@
 This `repo`/directory contains my notes on Linux, how to
 use it, and various topics.
 
-The Wiki is implemented in a `Git` repository.  The files are
+The Wiki is implemented in a Git repository.  The files are
 served over HTTP with Gollum.  For information on Gollum see:
 https://github.com/gollum/gollum.
 
