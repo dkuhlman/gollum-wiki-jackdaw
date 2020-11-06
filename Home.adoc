@@ -1,6 +1,16 @@
-== Notes home page
+= Notes home page
 
 This `repo`/directory contains my notes on Linux, how to
 use it, and various topics.
+
+The Wiki is implemented in a `Git` repository.  The files are
+served over HTTP with Gollum.  For information on Gollum see:
+https://github.com/gollum/gollum.
+
+== Using an external editor
+
+The files in this Wiki can be edited in an external editor (e.g. Vim,
+Geany, etc.).  In order to make those changes effective, you must commit
+the changed files with Git.
 
 // vim:ft=asciidoc:
