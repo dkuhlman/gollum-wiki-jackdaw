@@ -7,7 +7,34 @@
 :docinfo: shared
 :nofooter:
 
-== Symbolic links, alternatives
+
+== Data types
+
+=== Strings
+
+Short literal string -- Single or double quotes.  Escape sequences
+are interpreted.
+
+Long literal string -- Long brackets.  May run for multiple lines.
+Escape sequences are *not* interpreted.  Examples:
+
+- `[[a simple string]]` -- Long bracket level 0.
+- `[=[a simple string]=]` -- Long bracket level 1.
+- `[==[a simple string]==]` -- Long bracket level 2.
+
+
+=== Tables and sequences
+
+Some expressions return a sequence that is *not* a table, for
+example: (1) `varargs` (`...`) inside a function definition and (2)
+`utf8.codepoint(s)`.  We can turn that sequence into a table by
+surrounding it with brackets, for example `{...}`.
+
+To get the number of items in a sequence, use `select("#", ...)`.
+
+== Miscellaneous topics
+
+=== Symbolic links, alternatives
 
 On Ubuntu, the correct symbolic links were not set up for the
 interpreter and compiler.  I found this workaround.
@@ -24,7 +51,7 @@ lua-compiler-manual /usr/share/man/man1/luac5.3.1.gz
 
 See: https://askubuntu.com/questions/850317/installing-lua5-2-vs-lua5-3-on-ubuntu-16-10
 
-== Reloading a module while in the interactive console
+=== Reloading a module while in the interactive console
 
 Do this:
 
@@ -34,7 +61,7 @@ Do this:
 ----------
 
 
-== Getting access to the command line arguments
+=== Getting access to the command line arguments
 
 The command line arguments are in global variable `args`.
 
@@ -57,7 +84,7 @@ end
 main()
 ----------
 
-== Global variables
+=== Global variables
 
 See `_ENV` and `_G` variables.  -- But, I do not know what the difference
 is between them.
