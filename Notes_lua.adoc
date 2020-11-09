@@ -28,7 +28,7 @@ Escape sequences are *not* interpreted.  Examples:
 Some expressions return a sequence that is *not* a table, for
 example: (1) `varargs` (`...`) inside a function definition and (2)
 `utf8.codepoint(s)`.  We can turn that sequence into a table by
-surrounding it with brackets, for example `{...}`.
+surrounding the expression with brackets, for example `{...}`.
 
 To get the number of items in a sequence, use `select("#", ...)`.
 
