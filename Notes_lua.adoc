@@ -32,6 +32,9 @@ surrounding the expression with brackets, for example `{...}`.
 
 To get the number of items in a sequence, use `select("#", ...)`.
 
+For more hints and clues on this topic see:
+https://github.com/moteus/lua-vararg.
+
 == Miscellaneous topics
 
 === Symbolic links, alternatives
