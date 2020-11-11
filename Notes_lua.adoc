@@ -39,7 +39,7 @@ https://github.com/moteus/lua-vararg.
 
 === Symbolic links, alternatives
 
-On Ubuntu, the correct symbolic links were not set up for the
+On Ubuntu, the correct symbolic links to the Lua executables were not set up for the
 interpreter and compiler.  I found this workaround.
 
 ----------
