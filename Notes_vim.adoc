@@ -338,6 +338,9 @@ pwd
 <esc>
 ---------
 
+Repeat a command, incrementing the register used in the command.
+Thus, `"1p...` is effectively equivalent to `"1p"2p"3p"4p`. For example,
+Can be used to reverse-order a handful of lines; example: `dddddddddd"1p....`.
 
 
 // vim:ft=asciidoc:
