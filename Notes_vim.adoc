@@ -90,7 +90,7 @@ In IxQuick, search for "vim map functions".
 `vim-repeat` -- See https://tpope.io/vim/repeat.git
 
 
-== The `g` command
+== The `g` command (Power of g)
 
 Enables us to perform a command on all lines containing a pattern.
 
