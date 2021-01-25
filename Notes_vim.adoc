@@ -20,7 +20,7 @@ When syntax highlighting gets out of sync, do:
 == Neomake
 
 Note that with Neovim, I am now using Neomake instead of Syntastic.
-I does async checking.  So, it does not freeze Nvim when checking
+It does async checking.  So, it does not freeze Nvim when checking
 big files.
 
 To turn off Neomake, do `:NeomakeToggle`.
