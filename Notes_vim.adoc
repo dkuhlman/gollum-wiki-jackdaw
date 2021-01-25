@@ -12,10 +12,10 @@
 
 When syntax highlighting gets out of sync, do:
 
----------
+----
 :syntax sync fromstart
 :syn sync fromstart
----------
+----
 
 == Neomake
 
@@ -63,9 +63,9 @@ back to terminal mode.  To switch tabs, exit terminal mode (<esc>).
 
 Start a terminal session in a new tab with:
 
----------
+----
 :tabedit term://bash
----------
+----
 
 For help, see:
 
@@ -98,7 +98,7 @@ For example, enables us to display all lines containing a pattern.
 
 Examples:
 
----------
+----
 :g/pattern/z#.5
 
 # Show 5 lines of context.
@@ -110,7 +110,7 @@ Examples:
 " Show context and line numbers and line of dashes around target line.
 :g/pattern/z#=3
 :g/pattern/:z#=3            (note: the colon is optional.)
----------
+----
 
 Remember that the pattern is a regular expression.
 
@@ -119,11 +119,11 @@ See: http://vim.wikia.com/wiki/Power_of_g
 
 For help, in nvim/vim, do:
 
----------
+----
 :help :g
 :help :#
 :help :z
----------
+----
 
 == Show current file name and info
 
@@ -148,7 +148,7 @@ For example, in directory `/abc` the command vim `def/my.txt` would edit
 file `/abc/def/my.txt`. The following commands could be entered to
 display the information shown.
 
----------
+----
 :echo @% 	def/my.txt 	directory/name of file (relative to the current working directory of /abc)
 :echo expand('%:t') 	my.txt 	name of file ('tail')
 :echo expand('%:p') 	/abc/def/my.txt 	full path
@@ -156,7 +156,7 @@ display the information shown.
 :echo expand('%:p:h:t') 	def 	First get the full path with :p (/abc/def/my.txt), then get the head of that with :h (/abc/def), then get the tail of that with :t (def)
 :echo expand('%:r') 	def/my 	name of file less one extension ('root')
 :echo expand('%:e') 	txt 	name of file's extension ('extension')
----------
+----
 
 For more info run `:help expand` and `:help filename_modifiers`.
 
@@ -179,10 +179,10 @@ the cursor (or `"%P` to insert the name before the cursor).
 The following commands insert lines consisting of the full path of
 the current and alternate files into the buffer:
 
----------
+----
 :put =expand('%:p')
 :put =expand('#:p')
----------
+----
 
 
 == Helpful resources
@@ -205,18 +205,18 @@ In order to build Vim with support for python, I had to compile
 Python with support for shared libraries.  I used this script to
 build Python:
 
----------
+----
 #!/bin/bash
 sudo ls > /dev/null
 make distclean
 ./configure --enable-shared
 make -j 2
 sudo make install
----------
+----
 
 And, here is the script I use to build Vim, itself:
 
----------
+----
 #!/bin/bash
 
 sudo ls > /dev/null
@@ -230,7 +230,7 @@ make distclean
 #make clean
 make -j 2
 sudo make install
----------
+----
 
 
 == Python templates
@@ -296,32 +296,32 @@ error (check the output of :100verbose :helptags ALL if you don't believe me).
 
 Set the value of a register or a variable:
 
----------
+----
 :let @b = system("pwd")
 :let somevariable = system("pwd")
----------
+----
 
 See `:h system`.
 
 Insert the value of a register or variable at the cursor location:
 
----------
+----
 "bp
 :put = somevariable
 :put b
----------
+----
 
 See `:h :put`.
 
 Insert the result of a system/shell command into the buffer:
 
----------
+----
 :r !pwd
 :r !ls *.txt
 
 :let @b = system("ls *.txt")
 "bp
----------
+----
 
 See help for the expression register (=) -- `:h @=` or `:h "=`.
 
@@ -330,13 +330,13 @@ Or, highlight text (mark with v, shift-v, ctrl-v), then use filter (:!).
 Or, (in Neovim) create a terminal buffer, run a command, then copy
 and yank:
 
----------
+----
 :tabnew
 :te
 i
 pwd
 <esc>
----------
+----
 
 Repeat a command, incrementing the register used in the command.
 Thus, `"1p...` is effectively equivalent to `"1p"2p"3p"4p`. For example,
