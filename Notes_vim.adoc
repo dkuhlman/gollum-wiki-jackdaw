@@ -7,6 +7,11 @@
 :docinfo: shared
 :nofooter:
 
+== Information about the current file and cursor position
+
+Use either `<Ctrl-g>` or `g <Ctrl-G>`.  `g <Ctrl-G>` prints more info.
+
+For help, do `:help ctrl-g`.
 
 == Syntax highlight sync
 
