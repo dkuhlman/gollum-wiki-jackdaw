@@ -54,6 +54,8 @@ with whatever you want. Type the command:
 
 ----------
 $ usermod -l newname pi
+# Example:
+$ usermod -l dkuhlman pi
 ----------
 
 Now the user name has been changed the user's home directory name
@@ -61,6 +63,8 @@ should also be changed to reflect the new login name:
 
 ----------
 $ usermod -m -d /home/newname newname
+# Example:
+$ usermod -m -d /home/dkuhlman dkuhlman
 ----------
 
 Now logout and log back in as newname.
