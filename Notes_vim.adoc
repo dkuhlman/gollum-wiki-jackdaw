@@ -7,6 +7,17 @@
 :docinfo: shared
 :nofooter:
 
+
+== Update remote plugins
+
+When I installed Semshi, I had to do (in nvim):
+
+----
+:UpdateRemotePlugins
+----
+
+We need to do this when the plugins are updated, also.
+
 == Information about the current file and cursor position
 
 Use either `<Ctrl-g>` or `g <Ctrl-G>`.  `g <Ctrl-G>` prints more info.
