@@ -1,13 +1,11 @@
-= i3wm notes
+= Network notes
 :toc:
 :sectnums:
 :toclevels: 4
 :toc-title: Contents:
 
 
-== Network
-
-=== List hosts on LAN
+== List hosts on LAN
 
 Use one of the following (with `sudo` gives more info):
 
