@@ -61,6 +61,9 @@ Which will result in the following links:
 
 == SSH logon
 
+In order to be able to access a remote machine, install (e.g.)
+`openssh-client` and `openssh-server`.
+
 Instructions on how to set-up logon for SSH using ssh-keygen are
 here: https://en.wikipedia.org/wiki/Ssh-keygen
 
