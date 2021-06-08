@@ -5,7 +5,20 @@
 :sectnumlevels: 4
 
 
-== Arch Linux -- starting services
+== Enabling/starting services and auto-start at boot time
+
+=== Ubuntu
+
+For Ubuntu, (1) view docs and (2) check for the links and (3) create
+the link for auto-startup with the following:
+
+----
+$ man update-rc.d               # view the docs
+$ l /etc/rc?.d/???ssh           # check for links
+$ sudo update-rc.d ssh enable   # create auto startup link
+----
+
+=== Arch Linux -- starting services
 
 To start a service do, e.g.:
 
