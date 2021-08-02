@@ -1,0 +1,30 @@
+= Notes on filesystems -- mounting, formatting, detecting
+:toc:
+:toclevels: 4
+:sectnums:
+:sectnumlevels: 4
+
+== Mounting an SD card
+
+Create a mount point, e.g.:
+
+----
+$ sudo mkdir /mnt/sdcard
+----
+
+Detect the SD card -- Run the following, before and after inserting
+the SD card:
+
+----
+$ ls -la /dev/sd*
+----
+
+Mount the SD card -- Use on of the following:
+
+----
+$ sudo mount /dev/sdX1 /mnt
+$ sudo mount -t vfat /dev/sdX1 /mnt
+$ sudo mount -t ntfs /dev/sdX1 /mnt
+$ sudo mount -t msdos /dev/sdX1 /mnt
+----
+
