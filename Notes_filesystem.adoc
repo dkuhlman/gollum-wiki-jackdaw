@@ -19,7 +19,7 @@ the SD card:
 $ ls -la /dev/sd*
 ----
 
-Mount the SD card -- Use on of the following:
+Mount the SD card -- Use one of the following:
 
 ----
 $ sudo mount /dev/sdX1 /mnt
