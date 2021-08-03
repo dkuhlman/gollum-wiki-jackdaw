@@ -98,6 +98,19 @@ Set it with `:colorscheme solarized`.
 
 See: `~/.vim/bundle/vim-colors-solorized`.
 
+To determine how to change the color for a specific
+syntactic/lexical type, do the following:
+
+1. Look in the syntax file for the file type.  For file type `aaa`,
+   look in `runtime/syntax/aaa.vim`.
+
+2. Find the relevant syntactic category.  The regular expression
+   that matches it.  It will have a name, e.g. `Aaa`.
+
+3. Try setting it temporarily, e.g. `:hi Aaa ctermfg=white`.
+
+4. Define that setting in my `colorscheme` file in `.vim/colors`.
+
 
 == Mappings and repeat
 
