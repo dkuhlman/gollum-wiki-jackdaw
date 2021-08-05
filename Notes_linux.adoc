@@ -20,16 +20,22 @@ $ sudo update-rc.d ssh enable   # create auto startup link
 
 === Arch Linux -- starting services
 
+See -- https://wiki.archlinux.org/title/Systemd
+
 To start a service do, e.g.:
 
 ----
 $ systemctl start sshd.service
+# or just:
+$ systemctl start sshd
 ----
 
 To make it start automatically at boot time, do, e.g.:
 
 ----
 $ sudo systemctl enable sshd.service
+# or just:
+$ sudo systemctl enable sshd
 ----
 
 
