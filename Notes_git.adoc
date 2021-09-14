@@ -26,6 +26,8 @@ See `~/.gitconfig` on `jackdaw`.  Example:
     stat = log --stat
 ----
 
+For help/info do: `$ git help config`.
+
 == Command `show`
 
 Shows details on a specific commit.
