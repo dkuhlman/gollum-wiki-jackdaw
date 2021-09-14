@@ -14,4 +14,4 @@ it a `str`, not `bytes`.  So, we either have to convert content to
   `doc.write(outfile.buffer)`.
 
 - Or, decode to `str`:
-  sys.stdout.write(etree.tostring(r).decode())
+  `sys.stdout.write(etree.tostring(r).decode())`
