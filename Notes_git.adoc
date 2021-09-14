@@ -28,6 +28,8 @@ See `~/.gitconfig` on `jackdaw`.  Example:
 
 For help/info do: `$ git help config`.
 
+The Git documentation is here: https://git-scm.com/doc.
+
 == Command `show`
 
 Shows details on a specific commit.
