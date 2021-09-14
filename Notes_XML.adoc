@@ -1,5 +1,4 @@
-
-Alternative ways to write out an element tree:
+== Alternative ways to write out an element tree to a text file:
 
 - Open an output file in binary mode:
   `outfile = open('junk.xml', 'wb')`.
