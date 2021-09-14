@@ -2,7 +2,29 @@
 
 == Aliases
 
-See `~/.gitconfig` on `jackdaw`.
+See `~/.gitconfig` on `jackdaw`.  Example:
+
+----
+[user]
+    email = dkuhlman@pacbell.net
+    name = Dave Kuhlman
+[core]                                             
+    excludesfile = /home/dkuhlman/.gitignore_global
+[status]                   
+    showUntrackedFiles = no
+    short = true
+[alias]          
+    co = checkout
+    ci = commit
+    st = status
+    br = branch       
+    type = cat-file -t
+    dump = cat-file -p                                                     
+    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+    l = log --oneline                                                    
+    ll = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+    stat = log --stat
+----
 
 == Command `show`
 
