@@ -1,5 +1,9 @@
 == Alternative ways to write out an element tree to a text file:
 
+Python 3 requires that when we write text to a *text* file, we pass
+it a `str`, not `bytes`.  So, we either have to convert content to
+`str`, or write to a binary file/buffer.  Examples:
+
 - Open an output file in binary mode:
   `outfile = open('junk.xml', 'wb')`.
 
@@ -8,3 +12,6 @@
 
 - Use `elementtree.wrtite()` with the buffer object in the output file:
   `doc.write(outfile.buffer)`.
+
+- Or, decode to `str`:
+  sys.stdout.write(etree.tostring(r).decode())
