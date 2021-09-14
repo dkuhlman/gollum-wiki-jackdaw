@@ -6,5 +6,5 @@
 - Convert the element tree to a string:
   `etree.tostring(root, encoding='unicode')`.
 
-- Write with the buffer object in the output file:
-  `d.write(outfile.buffer)`.
+- Use `elementtree.wrtite()` with the buffer object in the output file:
+  `doc.write(outfile.buffer)`.
