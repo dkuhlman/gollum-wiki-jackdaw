@@ -1,4 +1,3 @@
-
 == What good it does me and why I need to write
 
 Some reasons:
@@ -27,8 +26,12 @@ Some reasons:
 == Why I write with ink (or pencil) on paper
 
 I do not have a good answer for this question.  There are benefits
-to each.  (1) I enjoy the feel of writing on paper with a ballpoint
-pen.  (2) I appreciate being able to "pile up" the papers I write
+to each.
+
+.. I enjoy the feel of writing on paper with a ballpoint
+   pen.
+
+.. I appreciate being able to "pile up" the papers I write
 on: it makes me feel that I'm accomplishing something.  (3) On the
 other hand, text files (like this Asciidoc file) are searchable,
 more editable, can be formatted in various ways (e.g. to HTML, PDF,
