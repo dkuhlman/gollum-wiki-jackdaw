@@ -34,6 +34,9 @@ to each.
 . I appreciate being able to "pile up" the papers I write
   on: it makes me feel that I'm accomplishing something.
   
-. On the other hand, text files (like this Asciidoc file) are searchable,
-  more editable, can be formatted in various ways (e.g. to HTML, PDF,
-  etc), and can be kept in a repository and a Wiki (like this one).
+. On the other hand, text files (like this Asciidoc file):
+
+.. are searchable,
+.. more editable
+.. can be formatted in various ways (e.g. to HTML, PDF, etc)
+.. can be kept in a repository and a Wiki (like this one).
