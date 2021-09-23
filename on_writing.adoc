@@ -36,11 +36,10 @@ to each.
   
 . On the other hand, text files (like this Asciidoc file):
 
-  [loweralpha]
-  .. are searchable,
-  .. more editable
-  .. can be formatted in various ways (e.g. to HTML, PDF, etc)
-  .. can be kept in a repository and a Wiki (like this one).
+.. are searchable,
+.. more editable
+.. can be formatted in various ways (e.g. to HTML, PDF, etc)
+.. can be kept in a repository and a Wiki (like this one).
 
 . And, light weight markup languages like Asciidoc and
   reStructuredText, are usable with some Wiki engines.
