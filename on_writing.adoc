@@ -36,6 +36,7 @@ to each.
   
 . On the other hand, text files (like this Asciidoc file):
 
+[loweralpha]
 .. are searchable,
 .. more editable
 .. can be formatted in various ways (e.g. to HTML, PDF, etc)
