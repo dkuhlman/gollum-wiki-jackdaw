@@ -44,3 +44,8 @@ to each.
 . And, light weight markup languages like Asciidoc and
   reStructuredText, are usable with some Wiki engines,
   for example, Gollum -- https://github.com/gollum/gollum.
+  
+. By writing on paper, I get something that I can later
+  review, think about, and make notes on.  On the other hand,
+  if I made notes in a digital text file, I could make revisions
+  more easily.
