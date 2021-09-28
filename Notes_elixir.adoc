@@ -1,0 +1,14 @@
+= Elixir notes
+:toc:
+:numbered:
+
+
+== Creating an escript
+
+See:
+
+- Creating an Elixir Escript application with Mix --
+  http://davekuhlman.org/elixir-escript-mix.html
+
+- Creating command line programs in Elixir --
+  https://webonrails.com/2015/11/03/creating-command-line-programs-in-elixir/
