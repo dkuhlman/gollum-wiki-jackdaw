@@ -39,6 +39,25 @@ $ sudo systemctl enable sshd
 ----
 
 
+== Time and network time server
+
+=== Arch Linux
+
+See -- https://wiki.archlinux.org/title/systemd-timesyncd
+
+Enable:
+
+----
+timedatectl set-ntp true
+----
+
+Get status:
+
+----
+timedatectl status
+----
+
+
 == Alternatives
 
 See `/etc/alternatives`.
