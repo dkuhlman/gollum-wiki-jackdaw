@@ -289,6 +289,16 @@ $ vim scp://dkuhlman@crow/b1/Python/Templates/template01.py
 ----------
 
 
+== Copy/clone a repo across hosts on my LAN
+
+Example using Git on host `magpie` to copy a repo from host `quail`:
+
+----
+$ git clone ssh://dkuhlman@quail/home/dkuhlman/a1/Erlang/Elixir/Test/test10
+----
+
+We can also update a repo with `git pull`.
+
 == Processes
 
 Several ways to display current processes:
