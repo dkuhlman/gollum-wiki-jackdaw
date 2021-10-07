@@ -1,4 +1,4 @@
-== Notes on personal-use wikis
+= Notes on personal-use wikis
 
 == Gollum
 
