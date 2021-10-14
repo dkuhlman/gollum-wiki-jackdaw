@@ -1,9 +1,8 @@
-============
 Page title
 ============
 
 Subtitle
-==========
+----------
 
 Some reST content.
 
