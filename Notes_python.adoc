@@ -5,4 +5,17 @@
 You can control where Python finds files that it is trying to import
 in the following ways:
 
-- Add to `sys.path`.
+- Add to `sys.path`.  Example:
++
+----
+import sys
+sys.path.append('/another/directory/containing/my/module')
+----
+
+- Set the environment variable `PYTHONPATH`.
+
+- Move your module to a directory that is in `sys.path`.
+
+- Use a `.env` file and the `dotenv` module --
+  https://github.com/pedroburon/dotenv
+
