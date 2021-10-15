@@ -1,0 +1,8 @@
+= Python notes
+
+== Search for imported files and environment variables
+
+You can control where Python finds files that it is trying to import
+in the following ways:
+
+- Add to `sys.path`.
