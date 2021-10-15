@@ -12,10 +12,16 @@ import sys
 sys.path.append('/another/directory/containing/my/module')
 ----
 
-- Set the environment variable `PYTHONPATH`.
+- Set the environment variable `PYTHONPATH`.  Do
+``$ python --help`` for some information.  Here is a snippet:
++
+----
+PYTHONPATH   : ':'-separated list of directories prefixed to the
+               default module search path.  The result is sys.path.
+----
 
 - Move your module to a directory that is in `sys.path`.
 
-- Use a `.env` file and the `dotenv` module --
+- Use a `.env` file and the `dotenv` module to set and get variables --
   https://github.com/pedroburon/dotenv
 
