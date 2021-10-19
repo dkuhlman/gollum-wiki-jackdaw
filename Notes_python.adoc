@@ -25,5 +25,3 @@ PYTHONPATH   : ':'-separated list of directories prefixed to the
 - Use a `.env` file and the `dotenv` module to set and get variables --
   https://github.com/pedroburon/dotenv
 
-- Use the `configparser` module from the Python standard library to
-  load configuation variables.
