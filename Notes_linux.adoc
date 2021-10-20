@@ -167,6 +167,12 @@ For info on setting up keys and passphrases for ssh, see:
 - https://help.ubuntu.com/community/SSH?action=show&redirect=SSHHowto
 - https://help.ubuntu.com/community/SSH/OpenSSH/Keys
 
+On `jackdaw` Arch Linux, I used:
+
+----
+ssh-keygen -t rsa -b 4096 -C "Access from jackdaw rsa"
+----
+
 
 == aptitude, apt, and apt-get
 
