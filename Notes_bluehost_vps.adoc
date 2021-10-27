@@ -70,3 +70,23 @@ machine ftp.reifyonline.org
 login reifyonl
 password xxxx
 ----
+
+== Package management, system updates, etc.
+
+View the CentOS release/version in these files:
+
+- `/etc/centos-release`
+- `/etc/centos-release-upstream`
+
+Package management is done with `rpm` and/or `yum`.
+
+Help on `yum` is here: https://www.redhat.com/sysadmin/how-manage-packages
+
+To update all packages to their latest versions, I did:
+
+----
+$ yum check-update 
+$ yum update 
+$ sudo yum update 
+----
+
