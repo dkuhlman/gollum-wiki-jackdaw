@@ -1,5 +1,8 @@
 = Notes on my Bluehost VPS account and server
-
+:toc:
+:toclevels: 4
+:sectnums:
+:sectnumlevels: 4
 
 == WHM
 
