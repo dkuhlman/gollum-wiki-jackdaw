@@ -80,13 +80,38 @@ View the CentOS release/version in these files:
 
 Package management is done with `rpm` and/or `yum`.
 
-Help on `yum` is here: https://www.redhat.com/sysadmin/how-manage-packages
+Help on `yum` and `rpm` is here:
+https://www.redhat.com/sysadmin/how-manage-packages
 
-To update all packages to their latest versions, I did:
+To update all packages to their latest versions, do:
 
 ----
 $ yum check-update 
-$ yum update 
 $ sudo yum update 
 ----
+
+To search for packages by keyword, do:
+
+----
+$ yum search xxxx
+----
+
+To install a package, do:
+
+----
+$ sudo yum install xxxx
+----
+
+To find out if a package is installed, do:
+
+----
+$ rpm -q xxxx
+----
+
+To get information about a package, do:
+
+----
+$ yum info xxxx
+----
+
 
