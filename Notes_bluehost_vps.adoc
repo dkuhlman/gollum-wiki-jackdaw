@@ -1,1 +1,65 @@
 = Notes on my Bluehost VPS account and server
+
+
+== WHM
+
+Go to https://162.240.31.110:2087/ -- Than log on with username: root
+- Password: BtPHAeG4sP7pp&*
+
+
+== cPanel
+
+Log on at `bluehost.com`.
+Click on "Advanced" of on "cPanel" near the bottom.
+
+
+== Sudo and root access.
+
+Instead of using `sudo`, I can log on with user name "root".
+
+
+== Email
+
+To access my email, use:
+
+- URL: https://davekuhlman.org:2096/
+- Username: dkuhlman@davekuhlman.org
+- Password: BtPHAeG4sP7pp&*
+
+
+== Secure shell
+
+Use `~/bin/davekuhlman-ssh.sh`:
+
+----
+#!/bin/bash
+#ssh davekuhl@davekuhlman.org
+ssh dqlvrpmy@davekuhlman.org
+----
+
+
+== FTP
+
+Use `~/bin/davekuhlman-ftp.sh`:
+
+----
+# ~/bin/davekuhlman-ftp.sh
+
+#!/bin/bash
+lftp davekuhlman.org
+----
+
+See `~/.netrc`:
+
+----
+# ~/.netrc
+
+machine davekuhlman.org
+login dqlvrpmy
+password BtPHAeG4sP7pp&*
+
+machine ftp.reifyonline.org
+login reifyonl
+password FJ15(,vn
+----
+
