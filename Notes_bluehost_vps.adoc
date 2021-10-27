@@ -3,19 +3,19 @@
 
 == WHM
 
-Go to https://162.240.31.110:2087/ -- Than log on with username: root
-- Password: BtPHAeG4sP7pp&*
+Go to https://162.240.31.110:2087/ -- Then log on with username: root
+- Password: xxxx
 
 
 == cPanel
 
 Log on at `bluehost.com`.
-Click on "Advanced" of on "cPanel" near the bottom.
+Click on "Advanced" or on "cPanel" near the bottom.
 
 
 == Sudo and root access.
 
-Instead of using `sudo`, I can log on with user name "root".
+Instead of using `sudo`, I can log on through `ssh` with user name "root".
 
 
 == Email
@@ -24,7 +24,7 @@ To access my email, use:
 
 - URL: https://davekuhlman.org:2096/
 - Username: dkuhlman@davekuhlman.org
-- Password: BtPHAeG4sP7pp&*
+- Password: xxxx
 
 
 == Secure shell
@@ -56,10 +56,9 @@ See `~/.netrc`:
 
 machine davekuhlman.org
 login dqlvrpmy
-password BtPHAeG4sP7pp&*
+password xxxx
 
 machine ftp.reifyonline.org
 login reifyonl
-password FJ15(,vn
+password xxxx
 ----
-
