@@ -115,3 +115,9 @@ $ yum info xxxx
 ----
 
 
+== Building and installing Python
+
+See the notes at
+`{davekuhlman.org}/home/dqlvrpmy/Python/Python-3.10.0/Notes.adoc0`
+
+
