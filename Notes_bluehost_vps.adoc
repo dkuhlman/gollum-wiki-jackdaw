@@ -29,10 +29,9 @@ To access my email, use:
 - Username: dkuhlman@davekuhlman.org
 - Password: xxxx
 
-Enabling inline HTML display in messge view -- Edit file:
-`/usr/local/cpanel/base/horde/imp/config/mime_drivers.php`.
-Change `'inline' => false,` to `'inline' => true,`.
-Search for "gdk".
+Horde -- Enabling inline HTML display in messge view -- Edit file:
+`/usr/local/cpanel/base/horde/imp/config/mime_drivers.php`. Change
+`'inline' => false,` to `'inline' => true,`. Search for "gdk".
 
 
 == Secure shell
