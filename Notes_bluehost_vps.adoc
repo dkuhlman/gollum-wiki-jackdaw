@@ -120,3 +120,11 @@ See the notes at
 `{davekuhlman.org}/home/dqlvrpmy/Python/Python-3.10.0/Notes.adoc0`
 
 
+== Upgraded VPS account/plan
+
+I upgraded, on 11/2/2021, from the Standard Bluehost VPS account to
+an Enhanced Bluehost VPS account.  It means more money, but also
+more (disk/SSD) storage.
+
+Bluehost did the migration for me.  It happened quickly and without
+any work by me.
