@@ -113,6 +113,12 @@ To get information about a package, do:
 $ yum info xxxx
 ----
 
+To find out which package contains/provides a file, do:
+
+----
+$ yum provides /paht/to/the/file
+----
+
 
 == Building and installing Python
 
