@@ -70,7 +70,7 @@ login reifyonl
 password xxxx
 ----
 
-== Package management, system updates, etc.
+== Package management, system updates, yum, rpm, etc.
 
 View the CentOS release/version in these files:
 
@@ -116,7 +116,7 @@ $ yum info xxxx
 To find out which package contains/provides a file, do:
 
 ----
-$ yum provides /paht/to/the/file
+$ yum provides /path/to/the/file
 ----
 
 
