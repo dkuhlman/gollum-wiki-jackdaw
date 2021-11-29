@@ -1,1 +1,8 @@
 = Notes on the Gollum Wiki engine
+
+== Authentication
+
+I looks like, after doing several Web searches, that user
+authentication is problematic and difficult to add.
+
+Perhaps that's OK.  I can edit and manage a Wiki from ssh.
