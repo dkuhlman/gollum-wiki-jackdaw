@@ -92,6 +92,14 @@ $ yum check-update
 $ sudo yum update 
 ----
 
+Possibly a better way to update all packages -- In a Web browser, go
+to WHM -- https://davekuhlman.org:2087/
+Then, do:
+
+1. Update Server Software
+2. System Update
+3. (optionally) System Reboot --> Graceful Server Reboot
+
 To search for packages by keyword, do:
 
 ----
