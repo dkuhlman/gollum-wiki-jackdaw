@@ -6,8 +6,13 @@
 
 == WHM
 
-Go to https://162.240.31.110:2087/ -- Then log on with username: root
-- Password: xxxx
+Go to:
+
+- https://162.240.31.110:2087/ or
+
+- https://davekuhlman.org:2087/
+
+Then log on with Username: root  Password: xxxx
 
 
 == cPanel
@@ -77,7 +82,15 @@ View the CentOS release/version in these files:
 - `/etc/centos-release`
 - `/etc/centos-release-upstream`
 
-Package management is done with `rpm` and/or `yum`.
+Updating software/packages on the server -- In WHM, I did:
+
+- `Software --> Update Server Software`
+
+- `Software --> System update`
+
+- `System Reboot --> Graceful Server Reboot [Documentation]`
+
+Package management can be done with `rpm` and/or `yum`.
 
 Help on `yum` and `rpm` is here:
 

@@ -1,0 +1,13 @@
+= Notes -- light-weight markup languages
+:toc:
+:toclevels: 4
+:sectnums:
+:sectnumlevels: 4
+
+
+== Asciidoc3
+
+Configuration files -- I made the following symbolic link:
+`~/.asciidoc3 -> /home/dqlvrpmy/Python/Envs/Env01/lib/python3.10/site-packages/asciidoc3`
+
+
