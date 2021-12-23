@@ -4,6 +4,16 @@
 :sectnums:
 :sectnumlevels: 4
 
+== Start-up
+
+=== Ubuntu
+
+For slow start-up, to discover where time is being used, do:
+
+----
+$ systemd-analyze blame
+----
+
 
 == Enabling/starting services and auto-start at boot time
 
