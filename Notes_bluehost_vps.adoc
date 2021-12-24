@@ -143,6 +143,12 @@ To find out which package contains/provides a file, do:
 $ yum provides /path/to/the/file
 ----
 
+To clean/clear package cache and more, see `man yum`, and do:
+
+----
+$ sudo yum clean all
+----
+
 
 == Building and installing Python
 
