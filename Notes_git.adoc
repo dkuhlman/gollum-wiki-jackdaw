@@ -1,4 +1,6 @@
 = Notes on `git`
+:toc:
+:numbered:
 
 == Aliases
 
@@ -30,9 +32,22 @@ For help/info do: `$ git help config`.
 
 The Git documentation is here: https://git-scm.com/doc.
 
+
 == Command `show`
 
 Shows details on a specific commit.
+
+
+== Revert a file to a specific revision
+
+Use:
+
+----
+$ git checkout c5f567~1 -- file1/to/restore file2/to/restore
+----
+
+See -- https://stackoverflow.com/questions/215718/how-can-i-reset-or-revert-a-file-to-a-specific-revision
+
 
 
 // vim:ft=asciidoc:
