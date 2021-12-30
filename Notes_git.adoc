@@ -40,13 +40,17 @@ Shows details on a specific commit.
 
 == Revert a file to a specific revision
 
-Use:
+Use one of the following:
 
 ----
+$ git checkout c5f567 -- file1/to/restore file2/to/restore
 $ git checkout c5f567~1 -- file1/to/restore file2/to/restore
 ----
 
-See -- https://stackoverflow.com/questions/215718/how-can-i-reset-or-revert-a-file-to-a-specific-revision
+"If you want to revert to the commit before c5f567, append ~1 (where 1
+is the number of commits you want to go back, it can be
+anything)." See --
+https://stackoverflow.com/questions/215718/how-can-i-reset-or-revert-a-file-to-a-specific-revision
 
 There is also `git restore`, mentioned in the above post at
 `stackoverflow`, but I have not yet tried it.
