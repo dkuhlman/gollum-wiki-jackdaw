@@ -1,0 +1,158 @@
+= Bazaar/bzr notes
+:toc:
+:sectnums:
+:toclevels: 4
+:toc-title: Contents:
+
+== Introduction
+
+Breezy (breezy) is a friendly fork of Bazar (bazar).
+
+We can use `brz` in stead of `bzr`.
+
+By default, Breezy provides support for both the Bazaar and Git file formats.
+
+See:
+
+- https://www.breezy-vcs.org/
+
+- https://www.breezy-vcs.org/doc/en/
+
+- Github -- https://github.com/breezy-team/breezy
+
+- Launchpad -- https://launchpad.net/brz
+
+
+== Repo on `quail` and clone/copy on `jackdaw`
+
+1. On `quail`, edit, build (with Docutils), and commit.
+
+2. On `jackdaw`, mount `quail-a1`, then do:
++
+----
+brz merge /quail-a1/Txt/Bzr/Reviews
+----
+
+It's also possible to do something like this:
+
+----
+$ brz branch bzr+ssh://dkuhlman@quail:/home/dkuhlman/a1/Txt/Bzr/Reviews
+----
+
+
+== Latest attempt at merge/update
+
+On crow, do:
+
+----
+$ cd Reviews
+$ cd ..
+$ bzr serve
+----
+
+On quail, do:
+
+----
+$ bzr merge bzr://crow.local/Reviews
+----
+
+
+== Remote branches via ssh
+
+To make a branch from crow, I did, e.g., on quail:
+
+----
+$ bzr branch bzr+ssh://dkuhlman@crow/~/b1/Datasci/Bzr/data-sci-text
+----
+
+Now update this branch on quail with the following:
+
+----
+$ cd data-sci-text
+$ bzr merge
+----
+
+And, to get info and the remote address, do:
+
+----
+$ bzr info
+----
+
+
+== Remote branches via the bzr server
+
+On crow, do:
+
+----
+$ cd Reviews
+$ cd ..
+$ bzr serve
+----
+
+Then on the remote machine do:
+
+----
+$ bzr branch new_reviews_branch
+----
+
+To update/merge changes, first commit on crow (the source), then
+start server in the Reviews directory/repo, then:
+
+----
+$ cd Reviews
+$ bzr merge bzr://crow.local/Reviews
+----
+
+
+== Book reviews -- Remote branches via the Bazaar/bzr server
+
+On crow, do:
+
+----
+$ cd Bzr/Reviews
+$ bzr serve
+----
+
+Then, on quail, do:
+
+----
+$ cd Bzr/Reviews
+$ bzr merge
+----
+
+
+== Data science document -- Remote branches via ssh
+
+To make a branch from crow, I did:
+
+----
+$ bzr branch bzr+ssh://dkuhlman@crow/~/b1/Datasci/Bzr/data-sci-text
+----
+
+Now update this branch on quail with the following:
+
+----
+$ cd data-sci-text
+$ bzr merge
+----
+
+And, to get info and the remote address, do:
+
+----
+$ bzr info
+----
+
+== Initialization
+
+Created a shared repository containing branches for `Notes` and
+`Reviews`:
+
+----------
+$ mcdir txt_master_01/
+$ bzr init-repository .
+$ bzr branch ~/b1/Notes/Bzr/Notes
+$ bzr branch ../Reviews
+----------
+
+Q: Is it possible that a shared repository is *only* intended to
+contain multiple branches of the *same* project?
