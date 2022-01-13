@@ -8,6 +8,13 @@
 // :nofooter:
 
 
+== Semshi
+
+I modified the colors for Semshi in
+`/home/dkuhlman/.vim/pack/addons/start/semshi/plugin/semshi.vim`
+Search for "gdk".
+
+
 == Update remote plugins
 
 When I installed Semshi, I had to do (in nvim):
