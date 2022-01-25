@@ -8,11 +8,14 @@ A `Python` function::
 
     def f():
         print('hi')
+        print('bye')
 
 **Another** Python function:
 
 ```
 def g(x, y):
+    print('hi')
+    print('bye')
     return x * y
 ```
 
@@ -43,4 +46,8 @@ Anordered, numbered list:
 
 More Markdown content.  And a few symbols &euro;, &times;, &deg;, etc.
 
-A simple test os aspell.  And a little help from Qt.
+A simple test of aspell.  And a little help from Qt.
+
+A remote link -- http://www.davekuhlman.org
+
+Another remote link -- [Dave's page](http://www.davekuhlman.org)

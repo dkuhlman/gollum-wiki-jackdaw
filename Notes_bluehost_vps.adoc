@@ -4,6 +4,12 @@
 :sectnums:
 :sectnumlevels: 4
 
+== Pelican Web site archive
+
+I've downloaded that Zip archive in `~/public_html/source/Save` to
+`{jackdaw}~/a1/Davekuhlman-org/Save`.
+
+
 == WHM
 
 Go to:
