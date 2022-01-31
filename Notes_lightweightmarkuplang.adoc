@@ -13,7 +13,8 @@ Configuration files -- I made the following symbolic link:
 
 == Docutils
 
-I modified the CSS file on `jackdaw` --
+I modified the CSS file on `jackdaw` to get a distinguishing colored
+background for literal/code blocks --
 `/home/dkuhlman/a1/Python/Envs/Env06/lib/python3.10/site-packages/docutils/writers/html5_polyglot/plain.css`
 
 ----
