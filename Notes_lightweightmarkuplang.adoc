@@ -11,3 +11,7 @@ Configuration files -- I made the following symbolic link:
 `~/.asciidoc3 -> /home/dqlvrpmy/Python/Envs/Env01/lib/python3.10/site-packages/asciidoc3`
 
 
+== Docutils
+
+I modified the CSS file on `jackdaw` --
+`/home/dkuhlman/a1/Python/Envs/Env06/lib/python3.10/site-packages/docutils/writers/html5_polyglot/plain.css`
