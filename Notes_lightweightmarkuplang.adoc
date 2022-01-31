@@ -15,3 +15,13 @@ Configuration files -- I made the following symbolic link:
 
 I modified the CSS file on `jackdaw` --
 `/home/dkuhlman/a1/Python/Envs/Env06/lib/python3.10/site-packages/docutils/writers/html5_polyglot/plain.css`
+
+----
+/* Literal Blocks */
+pre.literal-block, pre.doctest-block,
+pre.math, pre.code {
+  font-family: monospace;
+  /* gdk -- See https://www.w3schools.com/cssref/css_colors.asp */
+  background-color: Aqua;
+}
+----
