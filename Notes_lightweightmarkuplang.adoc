@@ -1,4 +1,4 @@
-= Notes -- light-weight markup languages
+= Notes -- light-weight markup languages (LWML)
 :toc:
 :toclevels: 4
 :sectnums:
