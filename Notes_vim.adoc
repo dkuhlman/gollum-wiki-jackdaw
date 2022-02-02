@@ -8,6 +8,26 @@
 // :nofooter:
 
 
+== changelist, jumplist, location-list, etc
+
+- quickfix list
+
+- jumplist -- Ctrl-o, Ctrl-i
+
+- changelist -- `g;`, `g,` (older, newer location of change)
+
+- location list -- `flake8` creates a location list.
+  See -- `:help location-list`
+
+Do:
+
+----
+:help changelist
+:help jumplist
+:help location-list
+----
+
+
 == Cheatsheets
 
 - https://catswhocode.com/vim-commands/
