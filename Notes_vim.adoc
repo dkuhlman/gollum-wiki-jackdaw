@@ -8,6 +8,10 @@
 // :nofooter:
 
 
+== Cheatsheets
+
+- https://catswhocode.com/vim-commands/
+
 == Semshi
 
 I modified the colors for Semshi in
